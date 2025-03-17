@@ -1,0 +1,33 @@
+.menu{
+    list-style: none;
+    float: left;
+    font-style: italic;
+}
+.menu li{
+    position: relative;
+    float: left;
+}
+.menu li a{
+    color: #333;
+    text-decoration: none;
+    padding: 5px 10px;
+    display: block;
+}
+.menu li a:hover{
+    background: #fff;
+    color: #333;
+    text-shadow: 0px 0px 2px #333;
+}
+.menu li ul{
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background-color: #fff;
+    display: none;
+}
+.menu li:hover ul, .menu li.over ul{display: block;}
+
+.menu li ul li{
+    display: block;
+    width: 250px;
+}
