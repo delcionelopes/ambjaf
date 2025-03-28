@@ -10,17 +10,19 @@ class Arquivo extends Model
 {
     use HasFactory;
     protected $table = 'arquivos';
+    protected $primaryKey = 'id';
     protected $fillable = [
+        'id',
         'artigos_id',
-        'user_id',
-        'rotulo',
+        'usuario_id',
         'nome',
+        'nomereal',
         'path',
         'created_at',
         'updated_at',
     ];
     public function user():BelongsTo{
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class,'usuario_id');
     }
     public function artigo():BelongsTo{
         return $this->belongsTo(Artigo::class,'artigos_id');

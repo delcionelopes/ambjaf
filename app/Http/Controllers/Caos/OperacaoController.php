@@ -26,11 +26,11 @@ class OperacaoController extends Controller
     public function index(Request $request)
     {
         if(is_null($request->pesquisa)){
-            $operacoes = $this->operacao->orderByDesc('codope')->paginate(6);
+            $operacoes = $this->operacao->orderByDesc('id')->paginate(6);
         }else{
             $query = $this->operacao->query()
                           ->where('nome','LIKE','%'.$request->pesquisa.'%');
-            $operacoes = $query->orderByDesc('codope')->paginate(6);
+            $operacoes = $query->orderByDesc('id')->paginate(6);
         }        
         return view('caos.operacao.index',[
             'operacoes' => $operacoes,
@@ -81,11 +81,11 @@ class OperacaoController extends Controller
 
             }
 
-            $data['codope'] = $this->maxId();
+            $data['id'] = $this->maxId();
             $data['nome'] = $request->input('nome');
             $data['descricao'] = $request->input('descricao');
             if($filePath){
-                $data['imagem'] = $filePath;
+                $data['ico'] = $filePath;
             }
             $data['created_at'] = now();
             $data['updated_at'] = null;
@@ -175,7 +175,7 @@ class OperacaoController extends Controller
             $data['nome'] = $request->input('nome');
             $data['descricao'] = $request->input('descricao');
             if($filePath){
-                $data['imagem'] = $filePath;
+                $data['ico'] = $filePath;
             }            
             $data['updated_at'] = now();
 
@@ -221,7 +221,7 @@ class OperacaoController extends Controller
         }
         //exclui imagem do diretório ico_operacao
         if($operacao->imagem){
-            $filePath = public_path().'/storage/'.$operacao->imagem;
+            $filePath = public_path().'/storage/'.$operacao->ico;
             if(file_exists($filePath)){
                 unlink($filePath);
             }
@@ -236,13 +236,13 @@ class OperacaoController extends Controller
     }
 
     protected function maxId(){
-        $operacao = $this->operacao->orderByDesc('codope')->first();
+        $operacao = $this->operacao->orderByDesc('id')->first();
         if($operacao){
             $codigo = $operacao->codope;
         }else{
             $codigo = 0;
         }
-        return $codigo+1;
+        return $codigo++;
     }
 
     public function armazenarImagemTemporaria(Request $request){
@@ -287,7 +287,7 @@ class OperacaoController extends Controller
     }
 
         public function operacoesXmodulos(int $modulo_id){
-        $modulo = $this->modulo->whereCodmod($modulo_id)->first();
+        $modulo = $this->modulo->whereId($modulo_id)->first();
         $operacoes = $modulo->operacoes()->paginate(6);
         return view('caos.operacao.index_operacaoXmodulos',[
             'operacoes' => $operacoes,

@@ -89,6 +89,7 @@ class ArtigoController extends Controller
             }
 
             $user = auth()->user();
+            $data['id'] = $this->maxId();
             $data['titulo'] = $request->input('titulo');
             $data['descricao'] = $request->input('descricao');
             $data['conteudo'] = $request->input('conteudo');            
@@ -301,10 +302,10 @@ class ArtigoController extends Controller
                     $maxid++;
                     
                     $data[$x]['id'] = $maxid;
-                    $data[$x]['user_id'] = $user->id;
+                    $data[$x]['usuario_id'] = $user->id;
                     $data[$x]['artigos_id'] = $id;                    
-                    $data[$x]['rotulo'] = $fileLabel;
-                    $data[$x]['nome'] = $fileName;
+                    $data[$x]['nome'] = $fileLabel;
+                    $data[$x]['nomereal'] = $fileName;
                     $data[$x]['path'] = $filePath;                    
                     $data[$x]['created_at'] = now();
                     $data[$x]['updated_at'] = null;
@@ -361,5 +362,16 @@ class ArtigoController extends Controller
         $totalarqs = $artigo->arquivos->count();
         return true;        
     }
+
+    public function maxId(){
+        $artigo = $this->artigo->orderByDesc('id')->first();
+        if($artigo){
+            $codigo = $artigo->id;
+        }else{
+            $codigo = 0;
+        }
+        return $codigo++;
+    }
+
 
 }

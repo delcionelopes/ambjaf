@@ -65,6 +65,7 @@ class TemaController extends Controller
                 'errors' => $validator->errors()->getMessages(),
             ]);
         }else{
+            $data['id'] = $this->maxId();
             $data['titulo'] = $request->input('titulo');
             $data['descricao'] = $request->input('descricao');            
             $data['created_at'] = now();  //atribuição explícita da data atual
@@ -170,4 +171,15 @@ class TemaController extends Controller
             'message' => 'Registro excluído com sucesso!',
         ]);
     }
+
+    public function maxId(){
+        $tema = $this->tema->orderByDesc('id')->first();
+        if($tema){
+            $codigo = $tema->id;
+        }else{
+            $codigo = 0;
+        }
+        return $codigo++;
+    }
+
 }

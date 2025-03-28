@@ -13,16 +13,16 @@ class Modope extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'id',
-        'modulo_codmod',
-        'operacao_codope',
+        'modulo_id',
+        'operacao_id',
     ];
 
     public function operacao():BelongsTo{
-        return $this->belongsTo(Operacao::class,'operacao_codope');
+        return $this->belongsTo(Operacao::class,'operacao_id');
     }
 
     public function modulo():BelongsTo{
-        return $this->belongsTo(Modulo::class,'modulo_codmod');
+        return $this->belongsTo(Modulo::class,'modulo_id');
     }
 
 }

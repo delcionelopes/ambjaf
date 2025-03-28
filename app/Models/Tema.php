@@ -12,7 +12,9 @@ class Tema extends Model
     use HasFactory;    
     use Sluggable;    
     protected $table = 'temas';
+    protected $primaryKey = 'id';
     protected $fillable = [
+        'id',
         'titulo',
         'descricao',
         'slug',

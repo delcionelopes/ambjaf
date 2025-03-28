@@ -11,23 +11,23 @@ class Modulo extends Model
 {
     use HasFactory;
     protected $table = 'modulo';
-    protected $primaryKey = 'codmod';
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'codmod',
+        'id',
         'nome',
-        'imagem',
+        'ico',
         'descricao',
-        'cor',
+        'color',
         'created_at',
         'updated_at',
     ];
 
     public function operacoes():BelongsToMany{
-        return $this->belongsToMany(Operacao::class,'modope','modulo_codmod','operacao_codope');
+        return $this->belongsToMany(Operacao::class,'modope','modulo_id','operacao_id');
     }
 
      public function autorizacao():HasMany{
-        return $this->hasMany(Autmodope::class,'modulo_codmod');
+        return $this->hasMany(Autmodope::class,'modulo_id');
     }
     
 }

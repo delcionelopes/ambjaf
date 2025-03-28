@@ -85,14 +85,13 @@ class UserController extends Controller
             if(file_exists($tempPath)){
                 unlink($tempPath);
             }
-
+            $data['id'] = $this->maxId();
             $data['name'] = strtoupper($request->input('name'));
             $data['perfil_id'] = $request->input('perfil_id');
             $data['email'] = $request->input('email');
-            $data['password'] = bcrypt($request->input('password'));
-            $data['moderador'] = $request->input('moderador');
+            $data['password'] = bcrypt($request->input('password'));            
             $data['admin'] = $request->input('admin');
-            $data['inativo'] = 0;
+            $data['inativo'] = false;
             if($filePath!=""){
                 $data['avatar'] = $filePath;
             }            
@@ -196,8 +195,7 @@ class UserController extends Controller
                     $data['email'] = $request->input('email');
                     if($request->password){
                     $data['password'] = bcrypt($request->input('password'));
-                    }
-                    $data['moderador'] = $request->input('moderador');
+                    }                    
                     $data['admin'] = $request->input('admin');
                     $data['inativo'] = $request->input('inativo');
                     if($filePath!=""){
@@ -285,18 +283,6 @@ class UserController extends Controller
         ]);
     }
 
-    public function moderadorUsuario(Request $request, int $id){
-        $moderador = $request->input('moderador');
-        $data = ['moderador' => $moderador];
-        $user = $this->user->find($id);
-        $user->update($data);
-        $u = User::find($id);
-        return response()->json([
-            'user' => $u,
-            'status'=> 200,
-        ]);
-    }
-
     public function inativoUsuario(Request $request, int $id){
         $inativo = $request->input('inativo');
         $data = ['inativo' => $inativo];
@@ -363,6 +349,16 @@ class UserController extends Controller
 
     protected function deixaSomenteDigitos($input){
         return preg_replace('/[^0-9]/','',$input);
+    }
+
+    public function maxId(){
+        $user = $this->user->orderByDesc('id')->first();
+        if($user){
+            $codigo = $user->id;
+        }else{
+            $codigo=0;
+        }
+        return $codigo++;
     }
     
 

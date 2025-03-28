@@ -29,11 +29,11 @@ class ModuloController extends Controller
     public function index(Request $request)
     {
         if(is_null($request->pesquisa)){
-            $modulos = $this->modulo->orderByDesc('codmod')->paginate(6);
+            $modulos = $this->modulo->orderByDesc('id')->paginate(6);
         }else{
             $query = $this->modulo->query()
                           ->where('nome','LIKE','$'.strtoupper($request->pesquisa).'%');
-            $modulos = $query->orderByDesc('codmod')->paginate(6);
+            $modulos = $query->orderByDesc('id')->paginate(6);
         }
         return view('caos.modulo.index',[
             'modulos' => $modulos,
@@ -89,12 +89,12 @@ class ModuloController extends Controller
                 }
             }
             $id = $this->maxId();
-            $data['codmod'] = $id;
+            $data['id'] = $id;
             $data['nome'] = $request->input('nome');
             $data['descricao'] = $request->input('descricao');
-            $data['cor'] = $request->input('cor');
+            $data['color'] = $request->input('cor');
             if($filePath){
-                $data['imagem'] = $filePath;
+                $data['ico'] = $filePath;
             }
             $data['created_at'] = now();              
             $data['updated_at'] = null;
@@ -132,7 +132,7 @@ class ModuloController extends Controller
     public function edit(int $id)
     {
         $modulo = $this->modulo->find($id);
-        $operacoes = $this->operacao->orderBy('codope')->get();        
+        $operacoes = $this->operacao->orderBy('id')->get();        
         
         return view('caos.modulo.edit',[
             'modulo' => $modulo,
@@ -186,9 +186,9 @@ class ModuloController extends Controller
 
             $data['nome'] = $request->input('nome');
             $data['descricao'] = $request->input('descricao');
-            $data['cor'] = $request->input('cor');
+            $data['color'] = $request->input('cor');
             if($filePath){
-                $data['imagem'] = $filePath;
+                $data['ico'] = $filePath;
             }
             $data['updated_at'] = now();
 
@@ -234,8 +234,8 @@ class ModuloController extends Controller
         }        
 
         //excluir imagem do diretório ico_modulo, se existir
-        if($modulo->imagem){
-            $filePath = public_path().'/storage/'.$modulo->imagem;
+        if($modulo->ico){
+            $filePath = public_path().'/storage/'.$modulo->ico;
             if(file_exists($filePath)){
                 unlink($filePath);
             }
@@ -292,17 +292,17 @@ class ModuloController extends Controller
     }
 
     protected function maxId(){
-        $modulo = $this->modulo->orderByDesc('codmod')->first();
+        $modulo = $this->modulo->orderByDesc('id')->first();
         if($modulo){
             $codigo = $modulo->codmod;            
         }else{
             $codigo = 0;
         }     
-        return $codigo+1;
+        return $codigo++;
     }
 
     public function modulosXoperacoes(int $operacao_id){
-        $operacao = $this->operacao->whereCodope($operacao_id)->first();
+        $operacao = $this->operacao->whereId($operacao_id)->first();
         $modulos = $operacao->modulos()->paginate(6);
         return view('caos.modulo.index_moduloXoperacoes',[
             'modulos' => $modulos,

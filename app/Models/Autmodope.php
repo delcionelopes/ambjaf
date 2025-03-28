@@ -9,12 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Autmodope extends Model
 {
     use HasFactory;
-    protected $table = 'autmodope';
+    protected $table = 'autorizacao';
     protected $primaryKey = 'id';
     protected $fillable = [
         'id',
-        'operacao_codope',
-        'modulo_codmod',
+        'modope_operacao_id',
+        'modope_modulo_id',
         'modope_id',
         'perfil_id',
         'created_at',
@@ -22,11 +22,11 @@ class Autmodope extends Model
     ];
 
     public function modulo():BelongsTo{
-        return $this->belongsTo(Modulo::class,'modulo_codmod');
+        return $this->belongsTo(Modulo::class,'modope_modulo_id');
     }
 
     public function operacao():BelongsTo{
-        return $this->belongsTo(Operacao::class,'operacao_codope');
+        return $this->belongsTo(Operacao::class,'modope_operacao_id');
     }
 
     public function perfil():BelongsTo{

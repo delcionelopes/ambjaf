@@ -11,21 +11,21 @@ class Operacao extends Model
 {
     use HasFactory;
     protected $table = 'operacao';
-    protected $primaryKey = 'codope';
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'codope',
+        'id',
         'nome',
-        'imagem',
+        'ico',
         'descricao',
         'created_at',
         'updated_at',
     ];
 
     public function modulos():BelongsToMany{
-        return $this->belongsToMany(Modulo::class,'modope','operacao_codope','modulo_codmod');
+        return $this->belongsToMany(Modulo::class,'modope','operacao_id','modulo_id');
     }
 
     public function autorizacao():HasMany{
-        return $this->hasMany(Autmodope::class,'operacao_codope');
+        return $this->hasMany(Autmodope::class,'modope_operacao_id');
     }
 }
