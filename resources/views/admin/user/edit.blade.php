@@ -144,19 +144,7 @@
                                     @endforeach                                    
                                 </select>
                             </div>
-                        </div>    
-                        <div class="col-md-2">
-                            <label for="">Acessos</label>
-                            <div class="form-group">
-                                <label for="moderador">
-                                @if($user->moderador)    
-                                <input type="checkbox" class="moderador checkbox" name="moderador" id="moderador" checked> Moderador
-                                @else
-                                <input type="checkbox" class="moderador checkbox" name="moderador" id="moderador"> Moderador
-                                @endif
-                                </label>
-                            </div>                            
-                        </div>                        
+                        </div>
                         <div class="col-md-2">
                             <label for="">Privilégio</label>
                             <div class="form-group">
@@ -244,7 +232,6 @@ $(document).ready(function(){
             data.append('perfil_id',$('#idperfil').val());
             data.append('imagem',$('#upimagem')[0].files[0]);
             data.append('inativo', $('#inativo').is(":checked")?'1':'0');
-            data.append('moderador',$('#moderador').is(":checked")?'1':'0');
             data.append('admin',$('#admin').is(":checked")?'1':'0');
             data.append('email',$('#email').val());
             data.append('password',$('#password').val());

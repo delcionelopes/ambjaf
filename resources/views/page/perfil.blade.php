@@ -21,7 +21,7 @@
     @method('PUT')
     <ul id="saveform_errList"></ul>
     <input type="hidden" id="edit_user_id" value="{{$user->id}}">
-    <input type="hidden" id="edit_moderador" value="{{$user->moderador}}">
+    <input type="hidden" id="edit_admin" value="{{$user->admin}}">
     <input type="hidden" id="edit_inativo" value="{{$user->inativo}}">
     <div class="container-fluid py-5">
         <div class="card">
@@ -56,7 +56,7 @@
                         </div>
                     </div>                                                        
                 </fieldset>  
-                @if(($user->moderador)&&(!$user->inativo))
+                @if(($user->admin)&&(!$user->inativo))
                 <fieldset>                    
                     <legend>Dados de Endereço</legend>
                     <div class="row">
@@ -149,7 +149,7 @@
                         </div>                    
                     </div>
                     
-                    @if(($user->moderador)&&(!$user->inativo))
+                    @if(($user->admin)&&(!$user->inativo))
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -192,7 +192,7 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">                        
-                        <div class="small text-center text-muted fst-italic">Copyright &copy; Laravel & Ajax – por Delcione Lopes da Silva</div>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; AMBJAF - Associação de Moradores do Bairro Jardim Floresta – desenvolvido por Delcione Lopes da Silva</div>
                     </div>
                 </div>
             </div>
@@ -218,7 +218,7 @@ $(document).ready(function(){
             data.append('imagem',$('#upimagem')[0].files[0]);            
             data.append('email',$('#email').val());
             data.append('password',$('#password').val());
-            data.append('moderador',$('#edit_moderador').val());
+            data.append('admin',$('#edit_admin').val());
             data.append('inativo',$('#edit_inativo').val());
             data.append('cpf',$('#cpf').val());
             data.append('endereco',$('#endereco').val());

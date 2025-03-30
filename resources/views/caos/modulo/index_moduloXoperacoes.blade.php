@@ -12,7 +12,6 @@
 
 <!--index-->
 @auth
-@if(!(auth()->user()->inativo))
 <div class="container-fluid py-5">   
     <div id="success_message"></div>    
 
@@ -47,11 +46,11 @@
                         <tbody id="lista_modulo">
                         <tr id="novo" style="display:none;"></tr>
                         @forelse($modulos as $modulo)   
-                            <tr id="modulo{{$modulo->codmod}}">                                
+                            <tr id="modulo{{$modulo->id}}">
                                 <th scope="row">{{$modulo->nome}}</th>                                                  
-                                @if($modulo->imagem)                 
+                                @if($modulo->ico)                 
                                 <td>  
-                                <img src="{{asset('storage/'.$modulo->imagem)}}" alt="Icone de {{$modulo->nome}}"
+                                <img src="{{asset('storage/'.$modulo->ico)}}" alt="Icone de {{$modulo->nome}}"
                                 class="rounded-circle" width="100">                                
                                 </td>                               
                                 @else
@@ -61,12 +60,12 @@
                                 <td>
                                 <div class="btn-group">                                
                                         @if($modulo->operacoes->count())                                
-                                        <button type="button" class="btn btn-{{$modulo->cor}} dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <button type="button" class="btn btn-{{$modulo->color}} dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                         <i class="fas fa-tools"></i><span class="caret"></span>
                                         </button>
-                                        <ul class="dropdown-menu" id="dropdown{{$modulo->codmod}}">
+                                        <ul class="dropdown-menu" id="dropdown{{$modulo->id}}">
                                             @foreach($modulo->operacoes as $operacao)                                                                                                            
-                                            <li class="dropdown-item"><a href="{{route('caos.modulo.moduloxoperacao',['operacao_id'=>$operacao->codope])}}" class="dropdown-item">{{$operacao->nome}}</a></li>
+                                            <li class="dropdown-item"><a href="{{route('caos.modulo.moduloxoperacao',['operacao_id'=>$operacao->id])}}" class="dropdown-item">{{$operacao->nome}}</a></li>
                                             @endforeach
                                         </ul>                                           
                                         @endif                               
@@ -74,8 +73,8 @@
                                 </td>
                                 <td>                                    
                                         <div class="btn-group">                                           
-                                            <a href="{{route('caos.modulo.edit',['id'=>$modulo->codmod])}}" type="button" data-id="{{$modulo->codmod}}" class="edit_modulo fas fa-edit" style="color: black; background:transparent;border:none; white-space: nowrap;" data-html="true" data-placement="left" data-toggle="popover" title="Editar"></a>
-                                            <button type="button" data-id="{{$modulo->codmod}}" data-nome="{{$modulo->nome}}" class="delete_modulo_btn fas fa-trash" style="background:transparent;border:none; white-space: nowrap;" data-html="true" data-placement="right" data-toggle="popover" title="Excluir"></button>
+                                            <a href="{{route('caos.modulo.edit',['id'=>$modulo->id])}}" type="button" data-id="{{$modulo->id}}" class="edit_modulo fas fa-edit" style="color: black; background:transparent;border:none; white-space: nowrap;" data-html="true" data-placement="left" data-toggle="popover" title="Editar"></a>
+                                            <button type="button" data-id="{{$modulo->id}}" data-nome="{{$modulo->nome}}" class="delete_modulo_btn fas fa-trash" style="background:transparent;border:none; white-space: nowrap;" data-html="true" data-placement="right" data-toggle="popover" title="Excluir"></button>
                                         </div>                                    
                                 </td>
                             </tr>  
@@ -93,9 +92,6 @@
     </div>        
     
 </div> 
-@else 
-  <i class="fas fa-lock"></i><b class="title"> USUÁRIO INATIVO OU NÃO LIBERADO! CONTACTE O ADMINISTRADOR.</b>
-@endif
 @endauth
 <!--End Index-->
 @stop

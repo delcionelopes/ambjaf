@@ -103,7 +103,6 @@
 
 <!--index-->
 @auth
-@if(!(auth()->user()->inativo))
 <div class="container-fluid py-5">   
     <div id="success_message"></div>    
     <section class="border p-4 mb-4 d-flex align-items-left">    
@@ -162,10 +161,7 @@
    
     </div>        
     
-</div> 
-@else 
-  <i class="fas fa-lock"></i><b class="title"> USUÁRIO INATIVO OU NÃO LIBERADO! CONTACTE O ADMINISTRADOR.</b>
-@endif
+</div>
 @endauth
 <!--End Index-->
 @stop
@@ -447,38 +443,20 @@ $(document).ready(function(){
                         $('#listtitleModalLabel').replaceWith('<h5 class="modal-title" id="listtitleModalLabel" style="color: white;">Perfil: '+response.perfil.nome+'</h5>');
                         $('#cardauthorizations').replaceWith('<div class="card-body" id="cardauthorizations"></div>');                        
                         var limitacard = "";
-                        var alfa = "";
-                        var beta = "";                        
                         $.each(response.modope,function(key,modope){                            
-                                alfa = '<div class="card-body" id="cardauthorizations'+modope.modulo_codmod+'">\
-                                <fieldset>\
-                                    <legend>'+modope.modulo.nome+'</legend>\
-                                    <div class="form-check" id="form-check-vinculo'+modope.modulo_codmod+'">\
-                                    </div>\
-                                </fieldset>\
-                                </div>';
-                                if(alfa!=beta){
                                 limitacard = limitacard+
-                                '<div class="card-body" id="cardauthorizations'+modope.modulo_codmod+'">\
+                                '<div class="card-body" id="cardauthorizations'+modope.modulo_id+'">\
                                 <fieldset>\
                                     <legend>'+modope.modulo.nome+'</legend>\
-                                    <div class="form-check" id="form-check-vinculo'+modope.modulo_codmod+'">\
+                                    <div class="form-check" id="form-check-vinculo'+modope.modulo_id+'">\
                                     </div>\
                                 </fieldset>\
                                 </div>';       
-                                }
-                                beta = '<div class="card-body" id="cardauthorizations'+modope.modulo_codmod+'">\
-                                <fieldset>\
-                                    <legend>'+modope.modulo.nome+'</legend>\
-                                    <div class="form-check" id="form-check-vinculo'+modope.modulo_codmod+'">\
-                                    </div>\
-                                </fieldset>\
-                                </div>';                  
                         });
                         $('#cardauthorizations').append(limitacard);
                         
                         $.each(response.modope,function(key,modope){                        
-                        $('#form-check-vinculo'+modope.modulo_codmod).append('<label class="form-check-label" for="check'+modope.id+'">\
+                        $('#form-check-vinculo'+modope.modulo_id).append('<label class="form-check-label" for="check'+modope.id+'">\
                             <input type="checkbox" id="check'+modope.id+'" name="authorizations[]" value="'+modope.id+'" class="form-check-input">\
                             '+modope.operacao.nome+'</label><br>');
                         });     

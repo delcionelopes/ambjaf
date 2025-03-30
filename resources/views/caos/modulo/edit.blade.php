@@ -7,7 +7,7 @@
     @csrf    
     @method('PUT')
     <ul id="saveform_errList"></ul> 
-    <input type="hidden" id="editmodulo_id" value="{{$modulo->codmod}}">
+    <input type="hidden" id="editmodulo_id" value="{{$modulo->id}}">
         <div class="card">
             <div class="card-body">
               <div class="card p-3" style="background-image: url('/assets/img/banner-docs.jpg')">
@@ -15,8 +15,8 @@
                     <!--arquivo de imagem-->
                     <div class="form-group mb-3">                                                
                        <div class="image">
-                        @if($modulo->imagem)
-                            <img src="{{asset('storage/'.$modulo->imagem)}}" class="imgico rounded-circle" width="100" >
+                        @if($modulo->ico)
+                            <img src="{{asset('storage/'.$modulo->ico)}}" class="imgico rounded-circle" width="100" >
                         @else
                             <img src="{{asset('storage/user.png')}}" class="imgico rounded-circle" width="100" >
                         @endif
@@ -48,10 +48,10 @@
                         </div>
                         <div class="col-md-1">                            
                             <div class="form-group">
-                               <input type="hidden" id="color" value="{{$modulo->cor}}"> 
+                               <input type="hidden" id="color" value="{{$modulo->color}}"> 
                                <label for="corbtn">Cores</label>
                                <div class="btn-group">
-                                <button type="button" id="corbtn" class="btn btn-{{$modulo->cor}} dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <button type="button" id="corbtn" class="btn btn-{{$modulo->color}} dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
@@ -77,20 +77,20 @@
                                     @foreach ($operacoes as $operacao)               
                                     @if ($modulo->operacoes->count())                                                                     
                                         @foreach ($modulo->operacoes as $ope)                                        
-                                        @if (($operacao->codope)==($ope->codope))
-                                            <label class="form-check-label" for="check{{$operacao->codope}}">
-                                                <input type="checkbox" id="check{{$operacao->codope}}" name="operacoes[]" value="{{$operacao->codope}}" class="form-check-input" checked> {{$operacao->nome}}
+                                        @if (($operacao->id)==($ope->id))
+                                            <label class="form-check-label" for="check{{$operacao->id}}">
+                                                <input type="checkbox" id="check{{$operacao->id}}" name="operacoes[]" value="{{$operacao->id}}" class="form-check-input" checked> {{$operacao->nome}}
                                             </label><br>                                       
                                         @break
                                         @elseif ($loop->last)
-                                         <label class="form-check-label" for="check{{$operacao->codope}}">
-                                                <input type="checkbox" id="check{{$operacao->codope}}" name="operacoes[]" value="{{$operacao->codope}}" class="form-check-input"> {{$operacao->nome}}
+                                         <label class="form-check-label" for="check{{$operacao->id}}">
+                                                <input type="checkbox" id="check{{$operacao->id}}" name="operacoes[]" value="{{$operacao->id}}" class="form-check-input"> {{$operacao->nome}}
                                             </label><br>   
                                         @endif                                        
                                         @endforeach                   
                                     @else
-                                            <label class="form-check-label" for="check{{$operacao->codope}}">
-                                                <input type="checkbox" id="check{{$operacao->codope}}" name="operacoes[]" value="{{$operacao->codope}}" class="form-check-input"> {{$operacao->nome}}
+                                            <label class="form-check-label" for="check{{$operacao->id}}">
+                                                <input type="checkbox" id="check{{$operacao->id}}" name="operacoes[]" value="{{$operacao->id}}" class="form-check-input"> {{$operacao->nome}}
                                             </label><br>   
                                     @endif
                                     @endforeach
@@ -142,7 +142,7 @@ $(document).ready(function(){
             
             data.append('nome',$('#nome').val());
             data.append('descricao',$('#descricao').val());
-            data.append('color',$('#color').val());            
+            data.append('cor',$('#color').val());            
             data.append('imagem',$('#upimagem')[0].files[0]);            
             data.append('operacoes',JSON.stringify(operacoes)); //array
             data.append('_enctype','multipart/form-data');

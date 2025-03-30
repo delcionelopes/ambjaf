@@ -40,16 +40,16 @@
 
 @foreach ($modulos as $mod)   
   @foreach($autorizacao as $aut)
-  @if(($aut->modulo_codmod) == ($mod->codmod))
+  @if(($aut->modope_modulo_id) == ($mod->id))
     <div class="p-2 mt-2">
     <div class="card card-hover" style="width: 14rem;">
       <div class="card-header">
         <b style="background: transparent; color: black; border: none;"><i class="fas fa-desktop"></i> {{$mod->nome}}</b>
       </div>
-      <img class="card-img-top" src="{{asset('storage/'.$mod->imagem)}}" alt="Imagem de capa do módulo" width="286" height="180">
+      <img class="card-img-top" src="{{asset('storage/'.$mod->ico)}}" alt="Imagem de capa do módulo" width="286" height="180">
       <div class="card-body">                
         <p class="card-text">{{$mod->descricao}}</p>        
-        <a href="{{route('caos.principal.operacoes',['id' => $mod->codmod])}}" type="button" class="btn btn-{{$mod->cor}}">Opções</a>
+        <a href="{{route('caos.principal.operacoes',['id' => $mod->id])}}" type="button" class="btn btn-{{$mod->color}}">Opções</a>
       </div>
     </div>
   </div>

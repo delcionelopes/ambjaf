@@ -7,7 +7,7 @@
     @csrf    
     @method('PUT')
     <ul id="saveform_errList"></ul> 
-    <input type="hidden" id="editoperacao_id" value="{{$operacao->codope}}">
+    <input type="hidden" id="editoperacao_id" value="{{$operacao->id}}">
         <div class="card">
             <div class="card-body">
               <div class="card p-3" style="background-image: url('/assets/img/banner-docs.jpg')">
@@ -15,8 +15,8 @@
                     <!--arquivo de imagem-->
                     <div class="form-group mb-3">                                                
                        <div class="image">
-                        @if($operacao->imagem)
-                            <img src="{{asset('storage/'.$operacao->imagem)}}" class="imgico rounded-circle" width="100" >
+                        @if($operacao->ico)
+                            <img src="{{asset('storage/'.$operacao->ico)}}" class="imgico rounded-circle" width="100" >
                         @else
                             <img src="{{asset('storage/user.png')}}" class="imgico rounded-circle" width="100" >
                         @endif

@@ -37,8 +37,7 @@
                         <thead class="sidebar-dark-primary elevation-4" style="color: white">
                             <tr>                                
                                 <th scope="col">USUÁRIOS</th>
-                                <th scope="col">AVATAR</th>
-                                <th scope="col">MODERADOR</th>
+                                <th scope="col">AVATAR</th>                                
                                 <th scope="col">ADMIN</th>
                                 <th scope="col">ATIVO</th>
                                 <th scope="col">ATUALIZAÇÃO</th>
@@ -59,11 +58,6 @@
                                 <td><img src="{{asset('storage/user.png')}}" alt="Sem foto"
                                 class="rounded-circle" width="100"></td>
                                 @endif                                
-                                @if($user->moderador)
-                                <td id="moderador{{$user->id}}"><button type="button" data-id="{{$user->id}}" data-moderador="0" class="moderador_user fas fa-thumbs-up" style="background: transparent; color: green; border: none;"></button></td>
-                                @else
-                                <td id="moderador{{$user->id}}"><button type="button" data-id="{{$user->id}}" data-moderador="1" class="moderador_user fas fa-thumbs-down" style="background: transparent; color: red; border: none;"></button></td>
-                                @endif
                                 @if($user->admin)
                                 <td id="admin{{$user->id}}"><button type="button" data-id="{{$user->id}}" data-admin="0" class="admin_user fas fa-thumbs-up" style="background: transparent; color: green; border: none;"></button></td>
                                 @else
@@ -170,50 +164,6 @@ $(document).ready(function(){
        
       
     });  ///fim delete
-
-    //inicio moderador usuario
-    $(document).on('click','.moderador_user',function(e){
-        e.preventDefault();
-        var CSRF_TOKEN  = document.querySelector('meta[name="csrf-token"]').getAttribute('content');   
-        var id = $(this).data("id");        
-        var moderador = $(this).data("moderador");
-        
-        var data = {
-            'moderador':moderador,
-            '_token':CSRF_TOKEN,
-            '_method':'PUT',
-        }        
-            $.ajax({
-                type: 'post',
-                dataType: 'json',
-                data:data,
-                url:'/admin/user/moderador/'+id,
-                success: function(response){
-                    if(response.status==200){                                                                               
-                        var limita1 = "";
-                        var limita2 = "";                        
-                        if(response.user.moderador==1){
-                        limita1 = '<td id="moderador'+response.user.id+'"><button type="button"\
-                                   data-id="'+response.user.id+'" \
-                                   data-moderador="0" \
-                                   class="moderador_user fas fa-thumbs-up"\
-                                   style="background: transparent; color: green; border: none;">\
-                                   </button></td>';
-                                }else{
-                        limita2 = '<td id="moderador'+response.user.id+'"><button type="button" \
-                                   data-id="'+response.user.id+'" \
-                                   data-moderador="1" \
-                                   class="moderador_user fas fa-thumbs-down" \
-                                   style="background: transparent; color: red; border: none;">\
-                                   </button></td>';
-                                }
-                        var celula = limita1+limita2;
-                        $('#moderador'+id).replaceWith(celula);        
-                    }
-                }
-            });
-    });
-    //fim moderador usuario
 
     //inicio admin usuario
     $(document).on('click','.admin_user',function(e){

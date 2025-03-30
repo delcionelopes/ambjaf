@@ -141,7 +141,7 @@
                                 </a>
                             </li>                          
                         </ul>
-                        <div class="small text-center text-muted fst-italic">Copyright &copy; Laravel & Ajax – por Delcione Lopes da Silva</div>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; AMBJAF - Associação de Moradores do Bairro Jardim Floresta – desenvolvido por Delcione Lopes da Silva</div>
                     </div>
                 </div>
             </div>

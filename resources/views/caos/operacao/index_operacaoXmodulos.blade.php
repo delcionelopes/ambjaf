@@ -12,7 +12,6 @@
 
 <!--index-->
 @auth
-@if(!(auth()->user()->inativo))
 <div class="container-fluid py-5">   
     <div id="success_message"></div>    
 
@@ -47,11 +46,11 @@
                         <tbody id="lista_operacao">
                         <tr id="novo" style="display:none;"></tr>
                         @forelse($operacoes as $operacao)   
-                            <tr id="operacao{{$operacao->codope}}">                                
+                            <tr id="operacao{{$operacao->id}}">
                                 <th scope="row">{{$operacao->nome}}</th>
-                                @if($operacao->imagem)                 
+                                @if($operacao->ico)                 
                                 <td>  
-                                <img src="{{asset('storage/'.$operacao->imagem)}}" alt="Icone de {{$operacao->nome}}"
+                                <img src="{{asset('storage/'.$operacao->ico)}}" alt="Icone de {{$operacao->nome}}"
                                 class="rounded-circle" width="100">                                
                                 </td>                               
                                 @else
@@ -64,9 +63,9 @@
                                         <button type="button" class="btn btn-none dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                         <i class="fas fa-tools"></i><span class="caret"></span>
                                         </button>
-                                        <ul class="dropdown-menu" id="dropdown{{$operacao->codope}}">
+                                        <ul class="dropdown-menu" id="dropdown{{$operacao->id}}">
                                             @foreach($operacao->modulos as $modulo)                                                                                                            
-                                            <li class="dropdown-item"><a href="{{route('caos.operacao.operacaoxmodulo',['modulo_id'=>$modulo->codmod])}}" class="dropdown-item">{{$modulo->nome}}</a></li>
+                                            <li class="dropdown-item"><a href="{{route('caos.operacao.operacaoxmodulo',['modulo_id'=>$modulo->id])}}" class="dropdown-item">{{$modulo->nome}}</a></li>
                                             @endforeach
                                         </ul>                                           
                                         @endif                               
@@ -74,8 +73,8 @@
                                 </td>
                                 <td>                                    
                                         <div class="btn-group">                                           
-                                            <a href="{{route('caos.operacao.edit',['id'=>$operacao->codope])}}" type="button" data-id="{{$operacao->codope}}" class="edit_operacao fas fa-edit" style="color: black; background:transparent;border:none; white-space: nowrap;" data-html="true" data-placement="left" data-toggle="popover" title="Editar"></a>
-                                            <button type="button" data-id="{{$operacao->codope}}" data-nome="{{$operacao->nome}}" class="delete_operacao_btn fas fa-trash" style="background:transparent;border:none; white-space: nowrap;" data-html="true" data-placement="right" data-toggle="popover" title="Excluir"></button>
+                                            <a href="{{route('caos.operacao.edit',['id'=>$operacao->id])}}" type="button" data-id="{{$operacao->id}}" class="edit_operacao fas fa-edit" style="color: black; background:transparent;border:none; white-space: nowrap;" data-html="true" data-placement="left" data-toggle="popover" title="Editar"></a>
+                                            <button type="button" data-id="{{$operacao->id}}" data-nome="{{$operacao->nome}}" class="delete_operacao_btn fas fa-trash" style="background:transparent;border:none; white-space: nowrap;" data-html="true" data-placement="right" data-toggle="popover" title="Excluir"></button>
                                         </div>                                    
                                 </td>
                             </tr>  
@@ -92,10 +91,7 @@
    
     </div>        
     
-</div> 
-@else 
-  <i class="fas fa-lock"></i><b class="title"> USUÁRIO INATIVO OU NÃO LIBERADO! CONTACTE O ADMINISTRADOR.</b>
-@endif
+</div>
 @endauth
 <!--End Index-->
 @stop

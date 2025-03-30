@@ -8,7 +8,7 @@
         <!-- CSRF Token -->    
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>meu Blog - Laravel & AJAX</title>        
+        <title>meu Bairro - Jardim Floresta - Santana/AP</title>        
         <link rel="icon" type="image/x-icon" href="{{asset('assets/favicon.ico')}}" />                    
         <!-- Font Awesome ícones (versão livre)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
@@ -28,7 +28,7 @@
                       <span class="caret"></span>
                 @endauth
 
-                <a class="navbar-brand" href="{{route('page.master')}}">meu Blog</a>
+                <a class="navbar-brand" href="{{route('page.master')}}">meu Bairro</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -41,8 +41,8 @@
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('register')}}">Registre-se</a></li>
                 @endguest
                 @auth
-                @if((auth()->user()->moderador) && (auth()->user()->cpf) && (auth()->user()->inativo!=1))
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('meublogadmin.meublog.index')}}">meublogadmin</a></li>                
+                @if((auth()->user()->admin) && (auth()->user()->cpf) && (auth()->user()->inativo!=1))
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('meublogadmin.meublog.index')}}">AMBJAFadmin</a></li>
                 @endif   
                 @if(auth()->user()->inativo!=1)                     
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('page.showperfil',['id' => auth()->user()->id])}}">{{auth()->user()->name}}</a></li>

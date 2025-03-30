@@ -72,8 +72,8 @@
                                 <legend>Operações do Módulo</legend>
                                 <div class="form-check">                                    
                                     @foreach ($operacoes as $operacao)
-                                    <label class="form-check-label" for="check{{$operacao->codope}}">
-                                        <input type="checkbox" id="check{{$operacao->codope}}" name="operacoes[]" value="{{$operacao->codope}}" class="form-check-input"> {{$operacao->nome}}
+                                    <label class="form-check-label" for="check{{$operacao->id}}">
+                                        <input type="checkbox" id="check{{$operacao->id}}" name="operacoes[]" value="{{$operacao->id}}" class="form-check-input"> {{$operacao->nome}}
                                     </label><br>
                                     @endforeach
                                 </div>

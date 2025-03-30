@@ -39,16 +39,16 @@
 
 @foreach ($operacoes as $ope)   
   @foreach($autorizacao as $aut)
-  @if(($aut->operacao_codope) == ($ope->codope))
+  @if(($aut->modope_operacao_id) == ($ope->id))
     <div class="p-2 mt-2">
     <div class="card card-hover" style="width: 14rem;">
       <div class="card-header">
         <b style="background: transparent; color: black; border: none;"><i class="fas fa-desktop"></i> {{$ope->nome}}</b>
       </div>
-      <img class="card-img-top" src="{{asset('storage/'.$ope->imagem)}}" alt="Imagem de capa do módulo" width="286" height="180">
+      <img class="card-img-top" src="{{asset('storage/'.$ope->ico)}}" alt="Imagem de capa do módulo" width="286" height="180">
       <div class="card-body">                
         <p class="card-text">{{$ope->descricao}}</p>        
-        <button type="button" id="abrir_btn" data-id="{{$ope->codope}}" class="btn btn-{{$aut->modulo->cor}}">Abrir</button>
+        <button type="button" id="abrir_btn" data-id="{{$ope->id}}" class="btn btn-{{$aut->modulo->color}}">Abrir</button>
       </div>
     </div>
   </div>

@@ -51,7 +51,7 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">                        
-                        <div class="small text-center text-muted fst-italic">Copyright &copy; Laravel & Ajax – por Delcione Lopes da Silva</div>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; AMBJAF - Associação de Moradores do Bairro Jardim Floresta – desenvolvido por Delcione Lopes da Silva</div>
                     </div>
                 </div>
             </div>
