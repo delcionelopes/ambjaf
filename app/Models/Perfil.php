@@ -19,11 +19,11 @@ class Perfil extends Model
     ];
 
     public function autmodope():HasMany{
-        return $this->hasMany(Autmodope::class,'perfil_id');
+        return $this->hasMany(Autmodope::class,'id','perfil_id');
     }
 
     public function users():HasMany{
-        return $this->hasMany(User::class,'perfil_id');
+        return $this->hasMany(User::class,'id','perfil_id');
     }
     
 }

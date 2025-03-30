@@ -27,7 +27,7 @@ class Modulo extends Model
     }
 
      public function autorizacao():HasMany{
-        return $this->hasMany(Autmodope::class,'modulo_id');
+        return $this->hasMany(Autmodope::class,'id','modope_modulo_id');
     }
     
 }

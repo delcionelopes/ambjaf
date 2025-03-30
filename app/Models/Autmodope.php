@@ -17,6 +17,7 @@ class Autmodope extends Model
         'modope_modulo_id',
         'modope_id',
         'perfil_id',
+        'autorizador',
         'created_at',
         'updated_at',
     ];
@@ -31,6 +32,10 @@ class Autmodope extends Model
 
     public function perfil():BelongsTo{
         return $this->belongsTo(Perfil::class,'perfil_id');        
+    }
+
+    public function autorizador():BelongsTo{
+        return $this->belongsTo(User::class,'autorizador','id');
     }
     
 }

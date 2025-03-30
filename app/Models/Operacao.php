@@ -26,6 +26,6 @@ class Operacao extends Model
     }
 
     public function autorizacao():HasMany{
-        return $this->hasMany(Autmodope::class,'modope_operacao_id');
+        return $this->hasMany(Autmodope::class,'id','modope_operacao_id');
     }
 }

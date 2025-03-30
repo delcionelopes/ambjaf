@@ -37,7 +37,7 @@ class PrincipalController extends Controller
         $user = auth()->user();        
         $autorizacao = $this->autorizacao->query()
                                 ->wherePerfil_id($user->perfil_id)
-                                ->whereModulo_codmod($id)
+                                ->whereModulo_id($id)
                                 ->get();       
         $operacoes = $this->operacao->all();
         return view('caos.secondary.index',[

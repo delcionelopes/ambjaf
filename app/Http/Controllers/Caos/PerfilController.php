@@ -186,7 +186,7 @@ class PerfilController extends Controller
         }else{
             $codigo = 0;
         }
-        return $codigo+1;
+        return $codigo++;
     }
 
     public function listAuthorizations(int $id){        
@@ -226,8 +226,8 @@ class PerfilController extends Controller
                 
                 $data['id'] = $this->autoincAuthorization();
                 $data['modope_id'] = $modope->id;
-                $data['modulo_codmod'] = $modope->modulo_codmod;
-                $data['operacao_codope'] = $modope->operacao_codope;
+                $data['modulo_id'] = $modope->modulo_id;
+                $data['operacao_id'] = $modope->operacao_id;
                 $data['perfil_id'] = $id;                
                 $data['created_at'] = now();
                 $data['updated_at'] = null;
@@ -248,7 +248,7 @@ class PerfilController extends Controller
         }else{
             $codigo = 0;
         }
-        return $codigo+1;
+        return $codigo++;
     }
 
 

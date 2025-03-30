@@ -43,15 +43,15 @@ class User extends Authenticatable
     ];
 
     public function artigos():HasMany{
-        return $this->hasMany(Artigo::class,'user_id');
+        return $this->hasMany(Artigo::class,'id','usuario_id');
     }
 
     public function comentarios():HasMany{
-        return $this->hasMany(Comentario::class,'user_id');
+        return $this->hasMany(Comentario::class,'id','usuario_id');
     }
 
     public function arquivos():HasMany{
-        return $this->hasMany(Arquivo::class,'user_id');
+        return $this->hasMany(Arquivo::class,'id','usuario_id');
     }
 
     public function perfil():BelongsTo{
