@@ -104,6 +104,36 @@
                             </fieldset>   
                      </div>
                 </div>
+
+                <div class="card">
+                     <div class="card-body"> 
+                            <fieldset>
+                                <legend>Patrocínios</legend>
+                                <div class="form-check">                                                                        
+                                    @foreach ($patrocinios as $patrocinio)
+                                    @if($artigo->patrocinios->count())
+                                        @foreach($artigo->patrocinios as $patrocinioartigo)
+                                        @if(($patrocinio->id) == ($patrocinioartigo->id))
+                                        <label class="form-check-label" for="check{{$patrocinio->id}}">
+                                            <input type="checkbox" id="check{{$patrocinio->id}}" name="patrocinios[]" value="{{$patrocinio->id}}" class="form-check-input" checked> {{$patrocinio->sigla}}
+                                        </label><br>
+                                        @break
+                                        @elseif ($loop->last)
+                                        <label class="form-check-label" for="check{{$patrocinio->id}}">
+                                            <input type="checkbox" id="check{{$patrocinio->id}}" name="patrocinios[]" value="{{$patrocinio->id}}" class="form-check-input"> {{$patrocinio->sigla}}
+                                        </label><br>
+                                        @endif
+                                        @endforeach
+                                    @else
+                                    <label class="form-check-label" for="check{{$patrocinio->id}}">
+                                        <input type="checkbox" id="check{{$patrocinio->id}}" name="patrocinios[]" value="{{$patrocinio->id}}" class="form-check-input"> {{$patrocinio->sigla}}
+                                    </label><br>
+                                    @endif
+                                    @endforeach
+                                </div>
+                            </fieldset>   
+                     </div>
+                </div>
                 
                 <div class="row">
                     <div class="col-md-12">
@@ -144,6 +174,12 @@ $(document).ready(function(){
                 $("input[name='temas[]']:checked").each(function(){
                     temas.push($(this).val());
                 });        
+        
+        var patrocinios = new Array();
+                $("input[name='patrocinios[]']:checked").each(function(){
+                    patrocinios.push($(this).val());
+                });        
+
         var data = new FormData();        
             
             data.append('titulo',$('#titulo').val());
@@ -151,6 +187,7 @@ $(document).ready(function(){
             data.append('conteudo',$('.conteudo').val());
             data.append('imagem',$('#upimagem')[0].files[0]);
             data.append('temas',JSON.stringify(temas)); //array
+            data.append('patrocinios',JSON.stringify(patrocinios)); //array
             data.append('_enctype','multipart/form-data');
             data.append('_token',CSRF_TOKEN);
             data.append('_method','put');              
@@ -215,7 +252,7 @@ $(document).ready(function(){
                 }else{                                                     
                         var arq = response.filepath;
                             arq = arq.toString();
-                        var linkimagem = '{{asset('')}}'+arq;                        
+                        var linkimagem = "{{asset('')}}"+arq;                        
                         var imagemnova = '<header class="masthead" style="background-image: url('+linkimagem+')">';                        
                         $(".masthead").replaceWith(imagemnova);
                     }   

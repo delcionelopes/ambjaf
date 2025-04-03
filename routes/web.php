@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\ArtigoController;
+use App\Http\Controllers\Admin\EntidadeController;
+use App\Http\Controllers\Admin\PatrocinioController;
 use App\Http\Controllers\Admin\TemaController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Caos\ModuloController;
@@ -68,12 +70,33 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('/edit/{id}',[UserController::class,'edit'])->name('edit');
         Route::put('/update/{id}',[UserController::class,'update']);
         Route::delete('/delete/{id}',[UserController::class,'destroy']);
-        Route::put('/moderador/{id}',[UserController::class,'moderadorUsuario']);
         Route::put('/inativo/{id}',[UserController::class,'inativoUsuario']);
         Route::put('/admin/{id}', [UserController::class,'adminUsuario']);
         Route::put('/fototemp-upload',[UserController::class,'fotoTempUpload']);
         Route::delete('/delete-fototemp',[UserController::class,'deleteFotoTemp']);
     });
+
+    //rotas para os patrocinios
+    Route::prefix('patrocinios')->name('patrocinios.')->group(function(){
+      Route::get('/index',[PatrocinioController::class,'index'])->name('index');
+      Route::get('/create',[PatrocinioController::class,'create'])->name('create');
+      Route::delete('/delete/{id}',[PatrocinioController::class,'destroy']);
+      Route::get('/edit/{id}',[PatrocinioController::class,'edit'])->name('edit');
+      Route::put('/update/{id}',[PatrocinioController::class,'update']);
+      Route::put('/store',[PatrocinioController::class,'store']);
+      Route::put('/imagemtemp-upload',[ArtigoController::class,'armazenarImagemTemporaria']);
+      Route::delete('/delete-imgtemp',[ArtigoController::class,'excluirImagemTemporaria']);
+  });
+
+  //rotas para os entidades
+  Route::prefix('entidades')->name('entidades.')->group(function(){
+    Route::get('/index',[EntidadeController::class,'index'])->name('index');
+    Route::get('/create',[EntidadeController::class,'create'])->name('create');
+    Route::delete('/delete/{id}',[EntidadeController::class,'destroy']);
+    Route::get('/edit/{id}',[EntidadeController::class,'edit'])->name('edit');
+    Route::put('/update/{id}',[EntidadeController::class,'update']);
+    Route::put('/store',[EntidadeController::class,'store']);
+});
 
 }); //fim do grupo admin
 
@@ -127,7 +150,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::put('/store-authorizations/{id}',[PerfilController::class,'storeAuthorizations']); 
       }); 
     }); //fim do grupo CAOS
-
 
 
 }); //fim do grupo middleware auth

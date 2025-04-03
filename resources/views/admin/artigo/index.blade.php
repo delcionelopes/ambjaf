@@ -246,7 +246,7 @@ $(document).ready(function(){
                 url: '/admin/artigos/abrir-doc/'+id,                                
                 success: function(response){ 
                     if(response.status==200){
-                      var link = '{{asset('')}}'+'storage/'+response.arquivo.path;
+                      var link = "{{asset('')}}"+'storage/'+response.arquivo.path;
                       //visualizar o pdf no browser                
                           window.open(link);                    
                     }

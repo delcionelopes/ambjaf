@@ -43,6 +43,10 @@ class Artigo extends Model
         return $this->hasMany(Comentario::class,'artigos_id');
     }
 
+    public function patrocinios():BelongsToMany{
+        return $this->belongsToMany(Patrocinio::class,'artigos_has_patrocinio','artigos_id','patrocinio_id');
+    }
+
     public function Sluggable():array{
         return [
             'slug' => [

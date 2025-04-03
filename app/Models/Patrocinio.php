@@ -33,4 +33,8 @@ class Patrocinio extends Model
     public function entidades():BelongsToMany{
         return $this->belongsToMany(Entidade::class,'entidade_has_patrocinio','patrocinio_id','entidade_id');
     }
+
+    public function artigos():BelongsToMany{
+        return $this->belongsToMany(Artigo::class,'artigos_has_patrocinio','patrocinio_id','artigos_id');
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Arquivo;
 use App\Models\Artigo;
+use App\Models\Patrocinio;
 use App\Models\Tema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -14,12 +15,14 @@ class ArtigoController extends Controller
     private $artigo;    
     private $tema;
     private $arquivo;
+    private $patrocinio;
 
-    public function __construct(Artigo $artigo, Tema $tema, Arquivo $arquivo)
+    public function __construct(Artigo $artigo, Tema $tema, Arquivo $arquivo, Patrocinio $patrocinio)
     {
         $this->artigo = $artigo;
         $this->tema = $tema;
         $this->arquivo = $arquivo;
+        $this->patrocinio = $patrocinio;
     }
     /**
      * Display a listing of the resource.
@@ -47,9 +50,11 @@ class ArtigoController extends Controller
      */
     public function create()
     {
-        $temas = $this->tema->all('id','titulo');        
+        $temas = $this->tema->all('id','titulo');
+        $patrocinios = $this->patrocinio->all('id','sigla');
         return view('admin.artigo.create',[
             'temas' => $temas,
+            'patrocinios' => $patrocinios,
         ]);
     }
 
@@ -103,6 +108,8 @@ class ArtigoController extends Controller
 
             $artigo->temas()->sync(json_decode($request->input('temas')));
 
+            $artigo->patrocinios()->sync(json_decode($request->input('patrocinios')));
+
             return response()->json([            
                 'status' => 200,                
             ]);
@@ -130,9 +137,11 @@ class ArtigoController extends Controller
     public function edit(int $id)
     {
         $artigo = $this->artigo->find($id);
-        $temas = $this->tema->all('id','titulo');        
+        $temas = $this->tema->all('id','titulo');
+        $patrocinios = $this->patrocinio->all('id','sigla');
         return view('admin.artigo.edit',[
             'temas' => $temas,
+            'patrocinios' => $patrocinios,
             'artigo' => $artigo,
         ]);
 
@@ -194,7 +203,8 @@ class ArtigoController extends Controller
 
                 $artigo->update($data); //atualização retorna um valor booleano
                 $a = Artigo::find($id);
-                $a->temas()->sync(json_decode($request->input('temas')));                
+                $a->temas()->sync(json_decode($request->input('temas')));
+                $a->patrocinios()->sync(json_decode($request->input('patrocinios')));
 
                 return response()->json([                
                     'status' => 200,                    
