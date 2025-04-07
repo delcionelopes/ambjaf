@@ -285,7 +285,7 @@ $(document).ready(function(){
                 }else{                                                     
                         var arq = response.filepath; 
                             arq = arq.toString();                  ;
-                        var linkimagem = '{{asset('')}}'+arq;                        
+                        var linkimagem = "{{asset('')}}"+arq;                        
                         var imagemnova = '<img src="'+linkimagem+'" class="imgfoto rounded-circle" width="100" >';
                         $(".imgfoto").replaceWith(imagemnova);
                     }   
@@ -348,7 +348,7 @@ $(document).ready(function(){
                                 if(response.localizacao.erro){
                                     $('#addpesquisacepresposta').replaceWith('<small id="addpesquisacepresposta" style="color:red;">CEP não localizado!</small>');
                                      loading.hide();
-                                     var link = '{{asset('')}}storage/c1.png';
+                                     var link = "{{asset('')}}storage/c1.png";
                                      $('#addimgcorreios').replaceWith('<img id="addimgcorreios" src="'+link+'" class="rounded-circle" width="20">');
                                 }else{
                                 $(".endereco").val(response.localizacao.logradouro);                                
@@ -356,7 +356,7 @@ $(document).ready(function(){
                                 $(".cidade").val(response.localizacao.localidade);
                                 $(".estado").val(response.localizacao.uf);                                
                                 loading.hide();
-                                var link = '{{asset('')}}storage/c1.png';
+                                var link = "{{asset('')}}storage/c1.png";
                                 $('#addimgcorreios').replaceWith('<img id="addimgcorreios" src="'+link+'" class="rounded-circle" width="20">');
                                 $('#addpesquisacepresposta').replaceWith('<small id="addpesquisacepresposta"></small>');
                                 }
@@ -366,7 +366,7 @@ $(document).ready(function(){
                 }else{
                     $('#addpesquisacepresposta').replaceWith('<small id="addpesquisacepresposta" style="color:red;">CEP deve conter 8 digitos</small>');
                     loading.hide();
-                    var link = '{{asset('')}}storage/c1.png';
+                    var link = "{{asset('')}}storage/c1.png";
                     $('#addimgcorreios').replaceWith('<img id="addimgcorreios" src="'+link+'" class="rounded-circle" width="20">');
                 }
 

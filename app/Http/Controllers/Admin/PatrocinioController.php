@@ -80,6 +80,8 @@ class PatrocinioController extends Controller
             $data['id'] = $this->maxId();
             $data['nome'] = $request->input('nome');
             $data['sigla'] = $request->input('sigla');
+            $data['cnpj'] = $request->input('cnpj');
+            $data['cpf'] = $request->input('cpf');
             if($filePath){
                 $data['logo'] = $filePath;
             }
@@ -87,7 +89,7 @@ class PatrocinioController extends Controller
             $data['email'] = $request->input('email');
             $data['contato'] = $request->input('contato');
             $data['endereco'] = $request->input('endereco');
-            $data['inativo'] = $request->input('inativo');
+            $data['inativo'] = false;
             $data['numero'] = $request->input('numero');
             $data['bairro'] = $request->input('bairro');
             $data['cidade'] = $request->input('cidade');
@@ -185,6 +187,8 @@ class PatrocinioController extends Controller
             $data['contato'] = $request->input('contato');
             $data['endereco'] = $request->input('endereco');
             $data['inativo'] = $request->input('inativo');
+            $data['cnpj'] = $request->input('cnpj');
+            $data['cpf'] = $request->input('cpf');
             $data['numero'] = $request->input('numero');
             $data['bairro'] = $request->input('bairro');
             $data['cidade'] = $request->input('cidade');
@@ -225,13 +229,13 @@ class PatrocinioController extends Controller
         if($entidades->count()){
             return response()->json([
                 'status' => 400,
-                'message' => 'Este registro não pode ser excluído. Pois, há entidades que dependem dele!',
+                'errors' => 'Este registro não pode ser excluído. Pois, há entidades que dependem dele!',
             ]);
         }
         if($artigos->count()){
             return response()->json([
                 'status' => 400,
-                'message' => 'Este registro não pode ser excluído. Pois, há artigos, programas ou projetos que dependem dele!',
+                'errors' => 'Este registro não pode ser excluído. Pois, há artigos, programas ou projetos que dependem dele!',
             ]);
         }
         $patrocinio->delete();

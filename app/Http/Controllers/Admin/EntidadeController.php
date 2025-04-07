@@ -191,7 +191,7 @@ class EntidadeController extends Controller
         if($patrocinios->count){
             return response()->json([
                 'status' => 400,
-                'message' => 'Este registro não pode ser excluído. Pois, há outros que dependem dele!',
+                'errors' => 'Este registro não pode ser excluído. Pois, há outros que dependem dele!',
             ]);
         }else{
             $entidade->delete();

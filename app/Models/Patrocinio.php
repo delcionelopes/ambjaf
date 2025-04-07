@@ -15,6 +15,8 @@ class Patrocinio extends Model
         'id',
         'nome',
         'sigla',
+        'cnpj',
+        'cpf',
         'logo',
         'link_site',
         'email',
