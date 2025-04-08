@@ -47,7 +47,7 @@ class ModuloController extends Controller
      */
     public function create()
     {
-        $operacoes = $this->operacao->orderBy('codope')->get();
+        $operacoes = $this->operacao->orderBy('id')->get();
 
         return view('caos.modulo.create',[
             'operacoes' => $operacoes,
@@ -294,11 +294,11 @@ class ModuloController extends Controller
     protected function maxId(){
         $modulo = $this->modulo->orderByDesc('id')->first();
         if($modulo){
-            $codigo = $modulo->codmod;            
+            $codigo = $modulo->id;            
         }else{
             $codigo = 0;
         }     
-        return $codigo++;
+        return $codigo+1;
     }
 
     public function modulosXoperacoes(int $operacao_id){

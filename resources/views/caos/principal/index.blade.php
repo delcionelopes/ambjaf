@@ -46,7 +46,9 @@
       <div class="card-header">
         <b style="background: transparent; color: black; border: none;"><i class="fas fa-desktop"></i> {{$mod->nome}}</b>
       </div>
+      <a href="{{route('caos.principal.operacoes',['id' => $mod->id])}}">
       <img class="card-img-top" src="{{asset('storage/'.$mod->ico)}}" alt="Imagem de capa do módulo" width="286" height="180">
+      </a>
       <div class="card-body">                
         <p class="card-text">{{$mod->descricao}}</p>        
         <a href="{{route('caos.principal.operacoes',['id' => $mod->id])}}" type="button" class="btn btn-{{$mod->color}}">Opções</a>

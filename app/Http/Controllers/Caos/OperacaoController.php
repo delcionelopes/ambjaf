@@ -150,8 +150,8 @@ class OperacaoController extends Controller
             if($request->hasFile('imagem')){
 
                 //se houver imagem nova, exclui a imagem antiga se houver
-                if($operacao->imagem){
-                    $antigoPath = public_path().'/storage/'.$operacao->imagem;
+                if($operacao->ico){
+                    $antigoPath = public_path().'/storage/'.$operacao->ico;
                     if(file_exists($antigoPath)){
                         unlink($antigoPath);
                     }
@@ -220,7 +220,7 @@ class OperacaoController extends Controller
             $operacao->modulos()->detach($modulos);
         }
         //exclui imagem do diretório ico_operacao
-        if($operacao->imagem){
+        if($operacao->ico){
             $filePath = public_path().'/storage/'.$operacao->ico;
             if(file_exists($filePath)){
                 unlink($filePath);
@@ -238,11 +238,11 @@ class OperacaoController extends Controller
     protected function maxId(){
         $operacao = $this->operacao->orderByDesc('id')->first();
         if($operacao){
-            $codigo = $operacao->codope;
+            $codigo = $operacao->id;
         }else{
             $codigo = 0;
         }
-        return $codigo++;
+        return $codigo+1;
     }
 
     public function armazenarImagemTemporaria(Request $request){

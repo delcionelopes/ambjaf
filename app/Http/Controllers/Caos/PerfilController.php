@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Caos;
 use App\Http\Controllers\Controller;
 use App\Models\Autmodope;
 use App\Models\Modope;
+use App\Models\Modulo;
 use App\Models\Perfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -12,12 +13,14 @@ use Illuminate\Support\Facades\Validator;
 class PerfilController extends Controller
 {
     private $perfil;
+    private $modulo;
     private $modope;
     private $autorizacao;
 
-    public function __construct(Perfil $perfil, Modope $modope, Autmodope $autorizacao)
+    public function __construct(Perfil $perfil, Modope $modope, Autmodope $autorizacao, Modulo $modulo)
     {
         $this->perfil = $perfil;
+        $this->modulo = $modulo;
         $this->modope = $modope;
         $this->autorizacao = $autorizacao;
 
@@ -186,17 +189,19 @@ class PerfilController extends Controller
         }else{
             $codigo = 0;
         }
-        return $codigo++;
+        return $codigo+1;
     }
 
     public function listAuthorizations(int $id){        
         $perfil = $this->perfil->find($id);
-        $modope = $this->modope->with('modulo','operacao')->get();        
+        $modulos = $this->modulo->all();
+        $modope = $this->modope->with('modulo','operacao')->get();
         $authorizations = $this->autorizacao->wherePerfil_id($id)->get();        
         if($modope->count()){
             return response()->json([
                 'status' => 200,
                 'modope' => $modope,
+                'modulos' => $modulos,
                 'perfil' => $perfil,
                 'authorizations' => $authorizations,
             ]);
@@ -226,9 +231,10 @@ class PerfilController extends Controller
                 
                 $data['id'] = $this->autoincAuthorization();
                 $data['modope_id'] = $modope->id;
-                $data['modulo_id'] = $modope->modulo_id;
-                $data['operacao_id'] = $modope->operacao_id;
-                $data['perfil_id'] = $id;                
+                $data['modope_modulo_id'] = $modope->modulo_id;
+                $data['modope_operacao_id'] = $modope->operacao_id;
+                $data['perfil_id'] = $id;
+                $data['autorizador'] = $user->id;
                 $data['created_at'] = now();
                 $data['updated_at'] = null;
                 
@@ -248,7 +254,7 @@ class PerfilController extends Controller
         }else{
             $codigo = 0;
         }
-        return $codigo++;
+        return $codigo+1;
     }
 
 
