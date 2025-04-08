@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'meublogADMIN')
+@section('title', 'meuBairroADMIN')
 
 @section('content')
 
@@ -17,7 +17,7 @@
 
     <section class="border p-4 mb-4 d-flex align-items-left">
     
-    <form action="{{route('admin.patrocinio.index')}}" class="form-search" method="GET">
+    <form action="{{route('admin.patrocinios.index')}}" class="form-search" method="GET">
         <div class="col-sm-12">
             <div class="input-group rounded">            
             <input type="text" name="pesquisa" class="form-control rounded float-left" placeholder="título" aria-label="Search"
@@ -25,7 +25,7 @@
             <button type="submit" class="pesquisa_btn input-group-text border-0" id="search-addon" style="background: transparent;border: none; white-space: nowrap;" data-html="true" data-placement="bottom" data-toggle="popover" title="Pesquisa<br>Informe e tecle ENTER">
                 <i class="fas fa-search"></i>
             </button>        
-            <a href="{{route('admin.patrocinio.create')}}" type="button" class="AddPatrocinio_btn input-group-text border-0 animate__animated animate__bounce" style="background: transparent;border: none; white-space: nowrap;" data-html="true" data-placement="top" data-toggle="popover" title="Novo registro"><i class="fas fa-plus"></i></a>
+            <a href="{{route('admin.patrocinios.create')}}" type="button" class="AddPatrocinio_btn input-group-text border-0 animate__animated animate__bounce" style="background: transparent;border: none; white-space: nowrap;" data-html="true" data-placement="top" data-toggle="popover" title="Novo registro"><i class="fas fa-plus"></i></a>
             </div>            
             </div>        
             </form>                     
@@ -48,7 +48,7 @@
                                 <td>{{$patrocinio->sigla}}</td>
                                 <td>                                    
                                         <div class="btn-group">                                           
-                                            <a href="{{route('admin.patrocinio.edit',['id'=>$patrocinio->id])}}" type="button" data-id="{{$patrocinio->id}}" class="edit_patrocinio fas fa-edit" style="background:transparent;border:none; color:black; white-space: nowrap;" data-html="true" data-placement="left" data-toggle="popover" title="Editar"></a>
+                                            <a href="{{route('admin.patrocinios.edit',['id'=>$patrocinio->id])}}" type="button" data-id="{{$patrocinio->id}}" class="edit_patrocinio fas fa-edit" style="background:transparent;border:none; color:black; white-space: nowrap;" data-html="true" data-placement="left" data-toggle="popover" title="Editar"></a>
                                             <button type="button" data-id="{{$patrocinio->id}}" data-sigla="{{$patrocinio->sigla}}" class="delete_patrocinio_btn fas fa-trash" style="background:transparent;border:none; white-space: nowrap;" data-html="true" data-placement="right" data-toggle="popover" title="Excluir"></button>
                                         </div>                                    
                                 </td>
@@ -108,7 +108,7 @@ $(document).ready(function(){
              }).then((result)=>{
              if(result.isConfirmed){             
                 $.ajax({
-                    url: '/admin/patrocinio/delete/'+id,
+                    url: '/admin/patrocinios/delete/'+id,
                     type: 'POST',
                     dataType: 'json',
                     data:{

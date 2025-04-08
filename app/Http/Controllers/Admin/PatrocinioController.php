@@ -238,12 +238,47 @@ class PatrocinioController extends Controller
                 'errors' => 'Este registro não pode ser excluído. Pois, há artigos, programas ou projetos que dependem dele!',
             ]);
         }
+        ///deleção do arquivo de imagem no diretório se existir
+        $arquivoPath = public_path('/storage/'.$patrocinio->logo);
+        if(file_exists($arquivoPath)){
+            unlink($arquivoPath);            
+    }
         $patrocinio->delete();
         return response()->json([
             'status' => 200,
             'message' => 'Registro excluído com sucesso!',
         ]);
     }
+
+    public function armazenarImagemTemporaria(Request $request){
+        if($request->hasFile('imagem')){
+        $file = $request->file('imagem');                           
+        $fileName =  $file->getClientOriginalName();        
+        $storagePath = public_path().'/storage/temp/';
+        $filePath = 'storage/temp/'.$fileName;
+        $file->move($storagePath,$fileName);            
+        }
+        return response()->json([
+            'status' => 200,
+            'filepath' => $filePath,
+        ]);        
+}
+
+
+ public function excluirImagemTemporaria(Request $request){
+     //exclui a imagem temporária no diretório se houver
+            if($request->hasFile('imagem')){
+                $file = $request->file('imagem');
+                $filename = $file->getClientOriginalName();
+                $antigoPath = public_path().'/storage/temp/'.$filename;
+                if(file_exists($antigoPath)){
+                    unlink($antigoPath);
+                }
+            }     
+    return response()->json([
+        'status' => 200,            
+    ]);
+}
 
     protected function maxId(){
         $patrocinio = $this->patrocinio->orderByDesc('id')->first();

@@ -70,9 +70,27 @@ class EntidadeController extends Controller
                 'errors' => $validator->errors()->getMessages(),
             ]);
         }else{
+            $filePath="";
+            if($request->hasFile('imagem')){
+            $file = $request->file('imagem');                           
+            $fileName =  $file->getClientOriginalName();                
+            $filePath = 'entidade/'.$fileName;
+            $storagePath = public_path().'/storage/entidade/';
+            $file->move($storagePath,$fileName);            
+
+                   ///excluir imagem temporária      
+                    $tempPath = public_path().'/storage/temp/'.$fileName;
+                    if(file_exists($tempPath)){
+                        unlink($tempPath);
+                    }
+           
+            }
             $data['id'] = $this->maxId();
             $data['nome'] = $request->input('nome');
             $data['sigla'] = $request->input('sigla');
+            if($filePath){
+                $data['logo'] = $filePath;
+            }
             $data['fundacao'] = $request->input('fundacao');
             $data['cnpj'] = $request->input('cnpj');
             $data['endereco'] = $request->input('endereco');
@@ -147,10 +165,34 @@ class EntidadeController extends Controller
         }else{
             $entidade = $this->entidade->find($id);
             if($entidade){
+                $filePath="";
+                if($request->hasFile('imagem')){
+                    //exclui a imagem antiga se houver
+                    if($entidade->logo){
+                        $antigoPath = public_path().'/storage/'.$entidade->logo;
+                        if(file_exists($antigoPath)){
+                            unlink($antigoPath);
+                        }
+                    }
+                $file = $request->file('imagem');                           
+                $fileName =  $file->getClientOriginalName();
+                $filePath = 'entidade/'.$fileName;
+                $storagePath = public_path().'/storage/entidade/';
+                $file->move($storagePath,$fileName);      
+                
+                //excluir imagem temporária
+                $tempPath = public_path().'/storage/temp/'.$fileName;
+                        if(file_exists($tempPath)){
+                            unlink($tempPath);
+                        }
+                }
                 $data['nome'] = $request->input('nome');
                 $data['sigla'] = $request->input('sigla');
                 $data['fundacao'] = $request->input('fundacao');
                 $data['cnpj'] = $request->input('cnpj');
+                if($filePath){
+                    $data['logo'] = $filePath;
+                }
                 $data['endereco'] = $request->input('endereco');
                 $data['numero'] = $request->input('numero');
                 $data['bairro'] = $request->input('bairro');
@@ -194,6 +236,11 @@ class EntidadeController extends Controller
                 'errors' => 'Este registro não pode ser excluído. Pois, há outros que dependem dele!',
             ]);
         }else{
+         ///deleção do arquivo de imagem no diretório
+              $arquivoPath = public_path('/storage/'.$entidade->logo);
+              if(file_exists($arquivoPath)){
+                  unlink($arquivoPath);            
+          }
             $entidade->delete();
             return response()->json([
                 'status' => 200,
@@ -202,6 +249,36 @@ class EntidadeController extends Controller
         }
     }
 
+    public function armazenarImagemTemporaria(Request $request){
+        if($request->hasFile('imagem')){
+        $file = $request->file('imagem');                           
+        $fileName =  $file->getClientOriginalName();        
+        $storagePath = public_path().'/storage/temp/';
+        $filePath = 'storage/temp/'.$fileName;
+        $file->move($storagePath,$fileName);            
+        }
+        return response()->json([
+            'status' => 200,
+            'filepath' => $filePath,
+        ]);        
+}
+
+
+ public function excluirImagemTemporaria(Request $request){
+     //exclui a imagem temporária no diretório se houver
+            if($request->hasFile('imagem')){
+                $file = $request->file('imagem');
+                $filename = $file->getClientOriginalName();
+                $antigoPath = public_path().'/storage/temp/'.$filename;
+                if(file_exists($antigoPath)){
+                    unlink($antigoPath);
+                }
+            }     
+    return response()->json([
+        'status' => 200,            
+    ]);
+}
+
     public function maxId(){
         $entidade = $this->entidade->orderByDesc('id')->first();
         if($entidade){
@@ -209,6 +286,6 @@ class EntidadeController extends Controller
         }else{
             $codigo = 0;
         }
-        return $codigo++;
+        return $codigo+1;
     }
 }

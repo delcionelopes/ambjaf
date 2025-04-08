@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col-md-4">
                               <div class="form-group">
-                                <label for="descricao">Sigla</label>
+                                <label for="sigla">Sigla</label>
                                 <input type="text" required class="form-control" name="sigla" id="sigla" placeholder="Sigla do patrocinador">
                             </div>
                         </div>

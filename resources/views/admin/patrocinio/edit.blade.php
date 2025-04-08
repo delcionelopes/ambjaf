@@ -18,7 +18,7 @@
                     <div class="form-group mb-3">                                                
                        <div class="image">           
                         @if($patrocinio->logo)                 
-                            <img src="{{asset('storage/'.$patrocionio->logo')}}" class="imgico rounded-circle" width="100" >
+                            <img src="{{asset('storage/'.$patrocinio->logo')}}" class="imgico rounded-circle" width="100" >
                         @else
                             <img src="{{asset('storage/user.png')}}" class="imgico rounded-circle" width="100" >
                         @end    
@@ -44,7 +44,7 @@
                     <div class="row">
                         <div class="col-md-4">
                               <div class="form-group">
-                                <label for="descricao">Sigla</label>
+                                <label for="sigla">Sigla</label>
                                 <input type="text" required class="sigla form-control" name="sigla" id="sigla" placeholder="Sigla do patrocinador" value="{{$patrocinio->sigla}}">
                             </div>
                         </div>

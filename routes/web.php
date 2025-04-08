@@ -84,8 +84,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
       Route::get('/edit/{id}',[PatrocinioController::class,'edit'])->name('edit');
       Route::put('/update/{id}',[PatrocinioController::class,'update']);
       Route::put('/store',[PatrocinioController::class,'store']);
-      Route::put('/imagemtemp-upload',[ArtigoController::class,'armazenarImagemTemporaria']);
-      Route::delete('/delete-imgtemp',[ArtigoController::class,'excluirImagemTemporaria']);
+      Route::put('/imagemtemp-upload',[PatrocinioController::class,'armazenarImagemTemporaria']);
+      Route::delete('/delete-imgtemp',[PatrocinioController::class,'excluirImagemTemporaria']);
   });
 
   //rotas para os entidades
@@ -96,6 +96,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/edit/{id}',[EntidadeController::class,'edit'])->name('edit');
     Route::put('/update/{id}',[EntidadeController::class,'update']);
     Route::put('/store',[EntidadeController::class,'store']);
+    Route::put('/imagemtemp-upload',[EntidadeController::class,'armazenarImagemTemporaria']);
+    Route::delete('/delete-imgtemp',[EntidadeController::class,'excluirImagemTemporaria']);
 });
 
 }); //fim do grupo admin
