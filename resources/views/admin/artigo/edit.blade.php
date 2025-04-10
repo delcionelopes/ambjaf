@@ -37,7 +37,7 @@
             <div class="card-body">
                 <label for="upimagem">Capa</label>                        
                 <span class="btn btn-none fileinput-button"><i class="fas fa-plus"></i>
-                <input id="upimagem" type="file" name="imagem" class="btn btn-primary" accept="image/x-png,image/gif,image/jpeg">
+                <input id="upimagem" type="file" name="imagem" class="btn btn-{{$color}}" accept="image/x-png,image/gif,image/jpeg">
                 </span>
             </div>
         </div>        
@@ -138,8 +138,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="modal-footer">
-                            <button type="button" class="cancelar_btn btn btn-default">Cancelar</button>
-                            <button class="update_btn btn btn-primary" type="button"><img id="imgedit" src="{{asset('storage/ajax-loader.gif')}}" style="display: none;" class="rounded-circle" width="20"> Atualizar</button>
+                            <button type="button" data-color="{{$color}}" class="cancelar_btn btn btn-default">Cancelar</button>
+                            <button class="update_btn btn btn-{{$color}}" data-color="{{$color}}" type="button"><img id="imgedit" src="{{asset('storage/ajax-loader.gif')}}" style="display: none;" class="rounded-circle" width="20"> Atualizar</button>
                         </div>
                     </div>
                 </div>
@@ -168,6 +168,7 @@ $(document).ready(function(){
         var loading = $('#imgedit');
             loading.show();
         var id = $('#edit_artigo_id').val();
+        var color = $(this).data("color");
 
         //Array apenas com os checkboxes marcados
         var temas = new Array();
@@ -213,7 +214,7 @@ $(document).ready(function(){
                     loading.hide();
                     $('#saveform_errList').replaceWith('<ul id="saveform_errList"></ul>');
                     loading.hide();
-                    location.replace('/admin/artigos/index');
+                    location.replace('/admin/artigos/index/'+color);
                 }  
             }  
         });
@@ -266,7 +267,8 @@ $(document).ready(function(){
         e.preventDefault();
         var CSRF_TOKEN  = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         var data = new FormData();
-        var arqs = $('#upimagem')[0].files;        
+        var arqs = $('#upimagem')[0].files;
+        var color = $(this).data("color");
 
         if(arqs.length > 0){        
             data.append('imagem',$('#upimagem')[0].files[0]);
@@ -284,13 +286,13 @@ $(document).ready(function(){
                 success: function(response){
                     if(response.status==200){
                     $('#saveform_errList').replaceWith('<ul id="saveform_errList"></ul>');
-                    location.replace('/admin/artigos/index');
+                    location.replace('/admin/artigos/index/'+color);
                 } 
                 }                                  
             });
 
         }else{
-            location.replace('/admin/artigos/index');
+            location.replace('/admin/artigos/index/'+color);
         }
 
     });

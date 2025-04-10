@@ -15,7 +15,7 @@
 <div class="modal fade animate__animated animate__bounce animate__faster" id="AddTemaModal" tabindex="-1" role="dialog" aria-labelledby="addtitleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header navbar-dark bg-primary">
+            <div class="modal-header navbar-dark bg-{{$color}}">
                 <h5 class="modal-title" id="addtitleModalLabel" style="color: white;">Adicionar Tema</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="close">
                 <span aria-hidden="true" style="color: white;">&times;</span>
@@ -36,7 +36,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary add_tema"><img id="imgadd" src="{{asset('storage/ajax-loader.gif')}}" style="display: none;" class="rounded-circle" width="20"> Salvar</button>
+                <button type="button" class="btn btn-{{$color}} add_tema"><img id="imgadd" src="{{asset('storage/ajax-loader.gif')}}" style="display: none;" class="rounded-circle" width="20"> Salvar</button>
             </div>
         </div>
     </div>
@@ -49,7 +49,7 @@
 <div class="modal fade animate__animated animate__bounce" id="editTemaModal" tabindex="-1" role="dialog" aria-labelledby="edittitleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header navbar-dark bg-primary">
+            <div class="modal-header navbar-dark bg-{{$color}}">
                 <h5 class="modal-title" id="edittitleModalLabel" style="color: white;">Editar e atualizar Tema</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="close">
                     <span aria-hidden="true" style="color: white;">&times;</span>
@@ -71,7 +71,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary update_tema"><img id="imgedit" src="{{asset('storage/ajax-loader.gif')}}" style="display: none;" class="rounded-circle" width="20"> Atualizar</button>
+                <button type="button" class="btn btn-{{$color}} update_tema"><img id="imgedit" src="{{asset('storage/ajax-loader.gif')}}" style="display: none;" class="rounded-circle" width="20"> Atualizar</button>
             </div>
         </div>
     </div>
@@ -86,7 +86,7 @@
 
     <section class="border p-4 mb-4 d-flex align-items-left">
     
-    <form action="{{route('admin.tema.index')}}" class="form-search" method="GET">
+    <form action="{{route('admin.tema.index',['color'=>$color])}}" class="form-search" method="GET">
         <div class="col-sm-12">
             <div class="input-group rounded">            
             <input type="text" name="pesquisa" class="form-control rounded float-left" placeholder="título do tema" aria-label="Search"
@@ -102,7 +102,7 @@
     </section>    
             
                     <table class="table table-hover">
-                        <thead class="sidebar-dark-primary" style="color: white">
+                        <thead class="bg-{{$color}}" style="color: white">
                             <tr>                                
                                 <th scope="col">TEMAS</th>
                                 <th scope="col">AÇÕES</th>

@@ -20,7 +20,7 @@ class PatrocinioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $color)
     {
         if(is_null($request->pesquisa)){
             $patrocinios = $this->patrocinio->orderByDesc('id')->get();
@@ -31,6 +31,7 @@ class PatrocinioController extends Controller
         }
         return view('admin.patrocinio.index',[
             'patrocinios' => $patrocinios,
+            'color' => $color,
         ]);
     }
 
@@ -39,9 +40,11 @@ class PatrocinioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($color)
     {
-        return view('admin.patrocinio.create');
+        return view('admin.patrocinio.create',[
+            'color' => $color,
+        ]);
     }
 
     /**
@@ -125,12 +128,13 @@ class PatrocinioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,$color)
     {
         $patrocinio = $this->patrocinio->find($id);
         return view('admin.patrocinio.edit',[
             'status' => 200,
             'patrocinio' => $patrocinio,
+            'color' => $color,
         ]);
     }
 

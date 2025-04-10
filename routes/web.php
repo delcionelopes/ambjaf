@@ -40,10 +40,10 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     //rotas para os artigos
     Route::prefix('artigos')->name('artigos.')->group(function(){
-        Route::get('/index',[ArtigoController::class,'index'])->name('index');
-        Route::get('/create',[ArtigoController::class,'create'])->name('create');
+        Route::get('/index/{color}',[ArtigoController::class,'index'])->name('index');
+        Route::get('/create/{color}',[ArtigoController::class,'create'])->name('create');
         Route::delete('/delete/{id}',[ArtigoController::class,'destroy']);
-        Route::get('/edit/{id}',[ArtigoController::class,'edit'])->name('edit');
+        Route::get('/edit/{id}/{color}',[ArtigoController::class,'edit'])->name('edit');
         Route::put('/update/{id}',[ArtigoController::class,'update']);
         Route::put('/store',[ArtigoController::class,'store']);
         Route::put('/imagemtemp-upload',[ArtigoController::class,'armazenarImagemTemporaria']);
@@ -55,7 +55,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     //rotas para os temas
     Route::prefix('tema')->name('tema.')->group(function(){
-        Route::get('/index',[TemaController::class,'index'])->name('index');
+        Route::get('/index/{color}',[TemaController::class,'index'])->name('index');
         Route::put('/store',[TemaController::class,'store']);
         Route::get('/edit/{id}',[TemaController::class,'edit']);
         Route::put('/update/{id}',[TemaController::class,'update']);
@@ -78,10 +78,10 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     //rotas para os patrocinios
     Route::prefix('patrocinios')->name('patrocinios.')->group(function(){
-      Route::get('/index',[PatrocinioController::class,'index'])->name('index');
-      Route::get('/create',[PatrocinioController::class,'create'])->name('create');
+      Route::get('/index/{color}',[PatrocinioController::class,'index'])->name('index');
+      Route::get('/create/{color}',[PatrocinioController::class,'create'])->name('create');
       Route::delete('/delete/{id}',[PatrocinioController::class,'destroy']);
-      Route::get('/edit/{id}',[PatrocinioController::class,'edit'])->name('edit');
+      Route::get('/edit/{id}/{color}',[PatrocinioController::class,'edit'])->name('edit');
       Route::put('/update/{id}',[PatrocinioController::class,'update']);
       Route::put('/store',[PatrocinioController::class,'store']);
       Route::put('/imagemtemp-upload',[PatrocinioController::class,'armazenarImagemTemporaria']);
@@ -90,10 +90,10 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
   //rotas para os entidades
   Route::prefix('entidades')->name('entidades.')->group(function(){
-    Route::get('/index',[EntidadeController::class,'index'])->name('index');
-    Route::get('/create',[EntidadeController::class,'create'])->name('create');
+    Route::get('/index/{color}',[EntidadeController::class,'index'])->name('index');
+    Route::get('/create/{color}',[EntidadeController::class,'create'])->name('create');
     Route::delete('/delete/{id}',[EntidadeController::class,'destroy']);
-    Route::get('/edit/{id}',[EntidadeController::class,'edit'])->name('edit');
+    Route::get('/edit/{id}/{color}',[EntidadeController::class,'edit'])->name('edit');
     Route::put('/update/{id}',[EntidadeController::class,'update']);
     Route::put('/store',[EntidadeController::class,'store']);
     Route::put('/imagemtemp-upload',[EntidadeController::class,'armazenarImagemTemporaria']);

@@ -29,7 +29,7 @@ class ArtigoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request,$color)
     {
         if(is_null($request->pesquisa)){
             $artigos = $this->artigo->orderBy('id','DESC')->paginate(6);
@@ -39,7 +39,8 @@ class ArtigoController extends Controller
             $artigos = $query->orderBy('id','DESC')->paginate(6);
         }            
         return view('admin.artigo.index',[
-            'artigos' => $artigos,         
+            'artigos' => $artigos,
+            'color' =>$color,
         ]);
     }
 
@@ -48,13 +49,14 @@ class ArtigoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($color)
     {
         $temas = $this->tema->all('id','titulo');
         $patrocinios = $this->patrocinio->all('id','sigla');
         return view('admin.artigo.create',[
             'temas' => $temas,
             'patrocinios' => $patrocinios,
+            'color' => $color,
         ]);
     }
 
@@ -134,7 +136,7 @@ class ArtigoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(int $id)
+    public function edit(int $id,$color)
     {
         $artigo = $this->artigo->find($id);
         $temas = $this->tema->all('id','titulo');
@@ -143,6 +145,7 @@ class ArtigoController extends Controller
             'temas' => $temas,
             'patrocinios' => $patrocinios,
             'artigo' => $artigo,
+            'color' => $color,
         ]);
 
     }

@@ -25,7 +25,7 @@
                         </div>
                        <label for="">Logo</label>                        
                        <span class="btn btn-none fileinput-button"><i class="fas fa-plus"></i>                          
-                          <input id="upimagem" type="file" name="imagem" class="btn btn-primary" accept="image/x-png,image/gif,image/jpeg">
+                          <input id="upimagem" type="file" name="imagem" class="btn btn-{{$color}}" accept="image/x-png,image/gif,image/jpeg">
                        </span>                       
                      </div>  
                      <!--arquivo de imagem--> 
@@ -171,8 +171,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="modal-footer">
-                            <button type="button" class="cancelar_btn btn btn-default">Cancelar</button>
-                            <button class="salvar_btn btn btn-primary" type="button"><img id="imgadd" src="{{asset('storage/ajax-loader.gif')}}" style="display: none;" class="rounded-circle" width="20"> Salvar</button>
+                            <button type="button" data-color="{{$color}}" class="cancelar_btn btn btn-default">Cancelar</button>
+                            <button class="salvar_btn btn btn-{{$color}}" data-color="{{$color}}" type="button"><img id="imgadd" src="{{asset('storage/ajax-loader.gif')}}" style="display: none;" class="rounded-circle" width="20"> Salvar</button>
                         </div>
                     </div>
                 </div>
@@ -201,6 +201,7 @@ $(document).ready(function(){
             loading.show();
         
         var id = $('#edit_patrocinio_id').val();
+        var color = $(this).data("color");
 
         var data = new FormData();        
             
@@ -242,7 +243,7 @@ $(document).ready(function(){
                 } else{
                     $('#saveform_errList').replaceWith('<ul id="saveform_errList"></ul>');  
                     loading.hide();
-                     location.replace('/admin/patrocinios/index');
+                     location.replace('/admin/patrocinios/index/'+color);
                 }  
             }  
         });
@@ -294,7 +295,8 @@ $(document).ready(function(){
     $(document).on('click','.cancelar_btn',function(e){
         e.preventDefault();
         var CSRF_TOKEN  = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        var files = $('#upimagem')[0].files;                      
+        var files = $('#upimagem')[0].files;
+        var color = $(this).data("color");
 
         if(files.length > 0){
         var data = new FormData();
@@ -313,13 +315,13 @@ $(document).ready(function(){
                 success: function(response){                              
                     if(response.status==200){
                     $('#saveform_errList').replaceWith('<ul id="saveform_errList"></ul>');
-                    location.replace('/admin/patrocinios/index');
+                    location.replace('/admin/patrocinios/index/'+color);
                 } 
                 }                                  
             });
 
         }else{
-            location.replace('/admin/patrocinios/index');
+            location.replace('/admin/patrocinios/index/'+color);
         }
 
     });

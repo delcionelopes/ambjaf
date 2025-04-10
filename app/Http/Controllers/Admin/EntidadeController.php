@@ -24,7 +24,7 @@ class EntidadeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request,$color)
     {
         if(is_null($request->pesquisa)){
             $entidades = $this->entidade->orderBy('id','DESC')->paginate(6);
@@ -35,6 +35,7 @@ class EntidadeController extends Controller
         }
         return view('admin.entidade.index',[
             'entidades' => $entidades,
+            'color' => $color,
         ]);        
     }
 
@@ -43,11 +44,12 @@ class EntidadeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($color)
     {
         $patrocinios = $this->patrocinio->all('id','sigla');
         return view('admin.entidade.create',[
             'patrocinios' => $patrocinios,
+            'color' => $color,
         ]);
     }
 
@@ -132,14 +134,15 @@ class EntidadeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,$color)
     {
         $entidade = $this->entidade->find($id);
         $patrocinios = $this->patrocinio->all('id','sigla');
-        return response()->json([
+        return view('admin.entidade.edit',[
             'status' => 200,
             'entidade' => $entidade,
             'patrocinios' => $patrocinios,
+            'color' => $color,
         ]);
     }
 

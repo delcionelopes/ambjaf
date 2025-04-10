@@ -45,12 +45,12 @@
       <div class="card-header">
         <b style="background: transparent; color: black; border: none;"><i class="fas fa-desktop"></i> {{$ope->nome}}</b>
       </div>
-      <a href="" data-id="{{$ope->id}}" id="link" class="abrir">
+      <a href="" data-id="{{$ope->id}}" data-color="{{$aut->modulo->color}}" id="link" class="abrir">
       <img class="card-img-top" src="{{asset('storage/'.$ope->ico)}}" alt="Imagem de capa do módulo" width="286" height="180">
       </a>
       <div class="card-body">                
         <p class="card-text">{{$ope->descricao}}</p>        
-        <button type="button" id="abrir_btn" data-id="{{$ope->id}}" class="abrir btn btn-{{$aut->modulo->color}}">Abrir</button>
+        <button type="button" id="abrir_btn" data-id="{{$ope->id}}" data-color="{{$color}}" class="abrir btn btn-{{$aut->modulo->color}}">Abrir</button>
       </div>
     </div>
   </div>
@@ -100,11 +100,12 @@ $(document).ready(function(){
   $(document).on('click','.abrir',function(e){
     e.preventDefault();
     var codoperacao = $(this).data("id");
+    var color = $(this).data("color");
 
     switch (codoperacao) {
-      case 1: location.replace('/admin/artigos/index'); ///frontpage/postagens
+      case 1: location.replace('/admin/artigos/index/'+color); ///frontpage/postagens
       break;
-      case 2: location.replace('/admin/tema/index'); //frontpage/temas        
+      case 2: location.replace('/admin/tema/index/'+color); //frontpage/temas        
       break;      
     
       default:
