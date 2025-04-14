@@ -33,7 +33,7 @@ class PrincipalController extends Controller
         ]);
     }
 
-    public function operacoes(Request $request, int $id){        
+    public function operacoes(Request $request, int $id,$color){        
         $user = auth()->user();        
         $autorizacao = $this->autorizacao->query()
                                 ->wherePerfil_id($user->perfil_id)
@@ -43,6 +43,7 @@ class PrincipalController extends Controller
         return view('caos.secondary.index',[
             'autorizacao' => $autorizacao,
             'operacoes' => $operacoes,
+            'color' => $color,
         ]);
     }
 }

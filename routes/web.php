@@ -139,7 +139,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
       Route::prefix('principal')->name('principal.')->group(function(){   //navegação módulos autorizados
         Route::get('/index',[PrincipalController::class,'index'])->name('index'); //módulos
-        Route::get('/operacoes/{id}',[PrincipalController::class,'operacoes'])->name('operacoes');  //operações
+        Route::get('/operacoes/{id}/{color}',[PrincipalController::class,'operacoes'])->name('operacoes');  //operações
       });
       
       Route::prefix('perfil')->name('perfil.')->group(function(){
