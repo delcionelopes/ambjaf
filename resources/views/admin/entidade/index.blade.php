@@ -20,7 +20,7 @@
     <form action="{{route('admin.entidades.index',['color'=>$color])}}" class="form-search" method="GET">
         <div class="col-sm-12">
             <div class="input-group rounded">            
-            <input type="text" name="pesquisa" class="form-control rounded float-left" placeholder="título" aria-label="Search"
+            <input type="text" name="pesquisa" class="form-control rounded float-left" placeholder="entidade" aria-label="Search"
             aria-describedby="search-addon">
             <button type="submit" class="pesquisa_btn input-group-text border-0" id="search-addon" style="background: transparent;border: none; white-space: nowrap;" data-html="true" data-placement="bottom" data-toggle="popover" title="Pesquisa<br>Informe e tecle ENTER">
                 <i class="fas fa-search"></i>
@@ -33,7 +33,7 @@
     </section>    
             
                     <table class="table table-hover">
-                        <thead class="pg-{{$color}}" style="color: white">
+                        <thead class="bg-{{$color}}" style="color: white">
                             <tr>                                
                                 <th scope="col">ENTIDADE</th>                                
                                 <th scope="col">SIGLA</th>                                
@@ -98,7 +98,7 @@ $(document).ready(function(){
                 },
                 title:sigla,
                 text: "Deseja excluir?",
-                imageUrl: linklogo+'/logo.png',
+                imageUrl: linklogo+'/logo.jpg',
                 imageWidth: 400,
                 imageHeight: 200,
                 imageAlt: 'imagem do sistema',

@@ -22,7 +22,7 @@ class TemaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request,$color)
     {
         if(is_null($request->pesquisa)){
             $temas = $this->tema->orderByDesc('id')->paginate(6);
@@ -34,6 +34,7 @@ class TemaController extends Controller
 
         return view('admin.tema.index',[
             'temas' => $temas,
+            'color' => $color,
         ]);
     }
 

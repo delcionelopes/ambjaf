@@ -20,7 +20,7 @@
     <form action="{{route('admin.patrocinios.index',['color'=>$color])}}" class="form-search" method="GET">
         <div class="col-sm-12">
             <div class="input-group rounded">            
-            <input type="text" name="pesquisa" class="form-control rounded float-left" placeholder="título" aria-label="Search"
+            <input type="text" name="pesquisa" class="form-control rounded float-left" placeholder="Patrocinador" aria-label="Search"
             aria-describedby="search-addon">
             <button type="submit" class="pesquisa_btn input-group-text border-0" id="search-addon" style="background: transparent;border: none; white-space: nowrap;" data-html="true" data-placement="bottom" data-toggle="popover" title="Pesquisa<br>Informe e tecle ENTER">
                 <i class="fas fa-search"></i>
@@ -48,7 +48,7 @@
                                 <td>{{$patrocinio->sigla}}</td>
                                 <td>                                    
                                         <div class="btn-group">                                           
-                                            <a href="{{route('admin.patrocinios.edit',['id'=>$patrocinio->id,'color'=>$color]])}}" type="button" data-id="{{$patrocinio->id}}" class="edit_patrocinio fas fa-edit" style="background:transparent;border:none; color:black; white-space: nowrap;" data-html="true" data-placement="left" data-toggle="popover" title="Editar"></a>
+                                            <a href="{{route('admin.patrocinios.edit',['id'=>$patrocinio->id,'color'=>$color])}}" type="button" data-id="{{$patrocinio->id}}" class="edit_patrocinio fas fa-edit" style="background:transparent;border:none; color:black; white-space: nowrap;" data-html="true" data-placement="left" data-toggle="popover" title="Editar"></a>
                                             <button type="button" data-id="{{$patrocinio->id}}" data-sigla="{{$patrocinio->sigla}}" class="delete_patrocinio_btn fas fa-trash" style="background:transparent;border:none; white-space: nowrap;" data-html="true" data-placement="right" data-toggle="popover" title="Excluir"></button>
                                         </div>                                    
                                 </td>
@@ -98,7 +98,7 @@ $(document).ready(function(){
                 },
                 title:sigla,
                 text: "Deseja excluir?",
-                imageUrl: linklogo+'/logo.png',
+                imageUrl: linklogo+'/logo.jpg',
                 imageWidth: 400,
                 imageHeight: 200,
                 imageAlt: 'imagem do sistema',

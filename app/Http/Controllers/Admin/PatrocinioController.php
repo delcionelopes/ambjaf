@@ -23,11 +23,11 @@ class PatrocinioController extends Controller
     public function index(Request $request, $color)
     {
         if(is_null($request->pesquisa)){
-            $patrocinios = $this->patrocinio->orderByDesc('id')->get();
+            $patrocinios = $this->patrocinio->orderByDesc('id')->paginate(6);
         }else{
             $query = $this->patrocinio->query()
                           ->where('nome','LIKE','%'.$request->pesquisa.'%');
-            $patrocinios = $query->orderByDesc('id')->get();
+            $patrocinios = $query->orderByDesc('id')->paginate(6);
         }
         return view('admin.patrocinio.index',[
             'patrocinios' => $patrocinios,

@@ -66,7 +66,7 @@
 <div class="card" style="width: 18rem;">
   <div class="row no-gutters">
     <div class="col-md-4">
-      <img src="{{asset('flor-de-cerejeira.png')}}" class="card-img" alt="sistema">
+      <img src="{{asset('logo.jpg')}}" class="card-img" alt="sistema">
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -106,8 +106,11 @@ $(document).ready(function(){
       case 1: location.replace('/admin/artigos/index/'+color); ///frontpage/postagens
       break;
       case 2: location.replace('/admin/tema/index/'+color); //frontpage/temas        
-      break;      
-    
+      break;
+      case 3: location.replace('/admin/entidades/index/'+color); //entidade
+      break;
+      case 4: location.replace('/admin/patrocinios/index/'+color); //padrocinadores
+      break;
       default:
         break;
     }

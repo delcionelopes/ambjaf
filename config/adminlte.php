@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'meublogADMIN',
+    'title' => 'AMBJAFadmin',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,8 +63,8 @@ return [
     |
     */
 
-    'logo' => '<b>meublog</b>ADMIN',
-    'logo_img' => 'flor-de-cerejeira.png',
+    'logo' => '<b>AMBJAF</b>admin',
+    'logo_img' => 'logo.jpg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'flor-de-cerejeira.png',
+            'path' => 'logo.jpg',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -109,7 +109,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'flor-de-cerejeira.png',
+            'path' => 'logo.jpg',
             'alt' => 'Logo do sistema',
             'effect' => 'animation__shake',
             'width' => 60,

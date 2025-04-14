@@ -165,7 +165,7 @@ $(document).ready(function(){
                 },
                 title:titulo,
                 text: "Deseja excluir?",
-                imageUrl: linklogo+'/logo.png',
+                imageUrl: linklogo+'/logo.jpg',
                 imageWidth: 400,
                 imageHeight: 200,
                 imageAlt: 'imagem do webdojo',

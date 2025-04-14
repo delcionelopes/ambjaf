@@ -124,7 +124,7 @@
 <div class="card" style="width: 18rem;">
   <div class="row no-gutters">
     <div class="col-md-4">
-      <img src="{{asset('flor-de-cerejeira.png')}}" class="card-img" alt="sistema">
+      <img src="{{asset('logo.jpg')}}" class="card-img" alt="sistema">
     </div>
     <div class="col-md-8">
       <div class="card-body">
