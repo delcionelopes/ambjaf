@@ -70,8 +70,8 @@
                         </div>
                           <div class="col-md-3">
                             <div class="form-group">                                                
-                            <label id="pesquisacep" for="edit_cep" style="color: blue;">CEP 
-                            <img id="imgpesquisacep" src="{{asset('storage/ajax-loader.gif')}}" style="display: none;" class="rounded-circle" width="20"><img id="imgcorreios" src="{{asset('storage/c1.png')}}" class="rounded-circle" width="20">
+                            <label id="editpesquisacep" for="edit_cep" style="color: blue;">CEP 
+                            <img id="editimgpesquisacep" src="{{asset('storage/ajax-loader.gif')}}" style="display: none;" class="rounded-circle" width="20"><img id="editimgcorreios" src="{{asset('storage/c1.png')}}" class="rounded-circle" width="20">
                             <small id="editpesquisacepresposta"></small>              
                             </label>          
                             <input type="text" id="edit_cep" class="cep form-control" placeholder="00000000" data-mask="00000000" data-mask-reverse="true" value="{{$user->cep}}">
@@ -357,9 +357,9 @@ $(document).ready(function(){
      $(document).on('click','#pesquisacep',function(e){
         e.preventDefault();
         var CSRF_TOKEN  = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        var loading = $('#imgpesquisacep');
+        var loading = $('#editimgpesquisacep');
                 var cep = $("#edit_cep").val().replace(/[^0-9]/g,'');
-                          $("#imgcorreios").replaceWith('<img id="imgcorreios">')
+                          $("#editimgcorreios").replaceWith('<img id="editimgcorreios">')
                 loading.show();
                 if(cep !== "" && cep.length == 8){
                  $.ajax({
@@ -372,7 +372,7 @@ $(document).ready(function(){
                                     $('#editpesquisacepresposta').replaceWith('<small id="editpesquisacepresposta" style="color:red;">CEP não localizado!</small>');
                                      loading.hide();
                                      var link = "{{asset('')}}storage/c1.png";
-                                     $('#imgcorreios').replaceWith('<img id="imgcorreios" src="'+link+'" class="rounded-circle" width="20">');
+                                     $('#editimgcorreios').replaceWith('<img id="editimgcorreios" src="'+link+'" class="rounded-circle" width="20">');
                                 }else{
                                 $(".endereco").val(response.localizacao.logradouro);                                
                                 $(".bairro").val(response.localizacao.bairro);
@@ -380,7 +380,7 @@ $(document).ready(function(){
                                 $(".estado").val(response.localizacao.uf);                                
                                 loading.hide();
                                 var link = "{{asset('')}}storage/c1.png";
-                                $('#imgcorreios').replaceWith('<img id="imgcorreios" src="'+link+'" class="rounded-circle" width="20">');
+                                $('#editimgcorreios').replaceWith('<img id="editimgcorreios" src="'+link+'" class="rounded-circle" width="20">');
                                 $('#editpesquisacepresposta').replaceWith('<small id="editpesquisacepresposta"></small>');
                                 }
                             }
@@ -390,7 +390,7 @@ $(document).ready(function(){
                     $('#editpesquisacepresposta').replaceWith('<small id="editpesquisacepresposta" style="color:red;">CEP deve conter 8 digitos</small>');
                     loading.hide();
                     var link = "{{asset('')}}storage/c1.png";
-                    $('#imgcorreios').replaceWith('<img id="imgcorreios" src="'+link+'" class="rounded-circle" width="20">');
+                    $('#editimgcorreios').replaceWith('<img id="editimgcorreios" src="'+link+'" class="rounded-circle" width="20">');
                 }
 
      });

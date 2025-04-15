@@ -119,7 +119,7 @@ class HomeController extends Controller
         $data['email'] = $request->input('email');
         if($request->password){
         $data['password'] = bcrypt($request->input('password'));
-        $data['moderador'] = $request->input('moderador');
+        $data['admin'] = $request->input('admin');
         $data['inativo'] = $request->input('inativo');
         }        
         if($filePath!=""){

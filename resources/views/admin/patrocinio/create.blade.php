@@ -309,9 +309,9 @@ $(document).ready(function(){
     $(document).on('click','#addpesquisacep',function(e){
         e.preventDefault();
         var CSRF_TOKEN  = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        var loading = $('#imgpesquisacep');
+        var loading = $('#addimgpesquisacep');
                 var cep = $("#add_cep").val().replace(/[^0-9]/g,'');
-                          $("#imgcorreios").replaceWith('<img id="imgcorreios">')
+                          $("#addimgcorreios").replaceWith('<img id="addimgcorreios">')
                 loading.show();
                 if(cep !== "" && cep.length == 8){
                  $.ajax({
@@ -324,7 +324,7 @@ $(document).ready(function(){
                                     $('#addpesquisacepresposta').replaceWith('<small id="addpesquisacepresposta" style="color:red;">CEP não localizado!</small>');
                                      loading.hide();
                                      var link = "{{asset('')}}storage/c1.png";
-                                     $('#imgcorreios').replaceWith('<img id="imgcorreios" src="'+link+'" class="rounded-circle" width="20">');
+                                     $('#addimgcorreios').replaceWith('<img id="addimgcorreios" src="'+link+'" class="rounded-circle" width="20">');
                                 }else{
                                 $(".endereco").val(response.localizacao.logradouro);                                
                                 $(".bairro").val(response.localizacao.bairro);
@@ -332,7 +332,7 @@ $(document).ready(function(){
                                 $(".estado").val(response.localizacao.uf);                                
                                 loading.hide();
                                 var link = "{{asset('')}}storage/c1.png";
-                                $('#imgcorreios').replaceWith('<img id="imgcorreios" src="'+link+'" class="rounded-circle" width="20">');
+                                $('#addimgcorreios').replaceWith('<img id="addimgcorreios" src="'+link+'" class="rounded-circle" width="20">');
                                 $('#addpesquisacepresposta').replaceWith('<small id="addpesquisacepresposta"></small>');
                                 }
                             }
@@ -342,7 +342,7 @@ $(document).ready(function(){
                     $('#addpesquisacepresposta').replaceWith('<small id="addpesquisacepresposta" style="color:red;">CEP deve conter 8 digitos</small>');
                     loading.hide();
                     var link = "{{asset('')}}storage/c1.png";
-                    $('#imgcorreios').replaceWith('<img id="imgcorreios" src="'+link+'" class="rounded-circle" width="20">');
+                    $('#addimgcorreios').replaceWith('<img id="addimgcorreios" src="'+link+'" class="rounded-circle" width="20">');
                 }
 
      });
