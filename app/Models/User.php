@@ -37,6 +37,8 @@ class User extends Authenticatable
         'cep',
         'estado',
         'avatar',
+        'email_verified_at',
+        'remember_token',
         'link_instagram',
         'link_facebook',
         'link_site',
