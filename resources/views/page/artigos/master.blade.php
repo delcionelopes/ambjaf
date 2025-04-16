@@ -1,6 +1,19 @@
 @extends('layouts.page')
 @section('content')
 
+<style>
+  .card {
+    transition: transform 0.2s ease;
+    box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
+    border-radius: 0;
+    border: 0;
+    margin-bottom: 1.5em;
+  }
+  .card:hover {
+    transform: scale(1.1);
+  }
+</style>
+
 <!-- Cabeçalho-->
 <header class="masthead" style="background-image: url('/assets/img/home-bg.jpg')">
             <div class="container position-relative px-4 px-lg-5">
@@ -61,7 +74,57 @@
                     <div class="d-flex hover justify-content-center">
                     {{$artigos->links()}}
                     </div>
-                </div>      
+                    <!-- Patrocínios -->    
+                <div class="container-fluid">
+                    <div class="row">
+                    @if($entidade)                       
+                     @foreach($entidade->patrocinios as $patrocinio)
+                     @if($patrocinio->logo)
+                    <div class="p-2 mt-2">       
+                    <div class="card card-hover" style="width: 14rem;"> 
+                          <div class="card-header">
+                             <b style="background: transparent; color: black; border: none;"><i class="fas fa-desktop"></i> {{$patrocinio->sigla}}</b>
+                          </div>
+                          <a href="{{$patrocinio->link_site}}">
+                               <img class="card-img-top" src="{{asset('storage/'.$patrocinio->logo)}}" alt="{{$patrocinio->nome}}" width="286" height="180">
+                           </a>
+                        <div class="card-body">                
+                           <p class="card-text"></p>        
+                           <a href="{{$patrocinio->link_site}}" type="button" class="btn btn-success">Visitar</a>
+                        </div>
+                     </div>
+                   </div>
+                    @break
+                    @elseif ($loop->last)
+                    {{-- cessa a construção de cards --}}
+                    @endif
+                    @endforeach                    
+                    @else
+                    <div class="container-fluid">
+                    <div class="row">
+                    <div class="p-2 mt-2">
+                       <div class="card" style="width: 18rem;">
+                           <div class="row no-gutters">
+                              <div class="col-md-4">
+                                  <img src="{{asset('logo.jpg')}}" class="card-img" alt="sistema">
+                              </div>
+                       <div class="col-md-8">
+                            <div class="card-body">
+                                 <h5 class="card-title"><b>Seja bem vindo!</b></h5>
+                                 <p class="card-text">Anuncie aqui!</p>
+                                 <p class="card-text"><small class="text-muted">Conheça o nosso trabalho!</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    @endif
+                    </div>
+                    </div>
+                <!-- fim patrocínios -->
+                </div>                  
             </div>
 </div>
         <!-- Rodapé-->

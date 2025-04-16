@@ -57,6 +57,58 @@
                            {{$artigo->conteudo}}                                                   
                         </pre>             
                 </div>
+                 
+                <!-- Patrocínios -->    
+                 <div class="container-fluid">
+                    <div class="row">
+                    @if($artigo)
+                     @foreach($artigo->patrocinios as $patrocinio)
+                     @if($patrocinio->logo)
+                    <div class="p-2 mt-2">       
+                    <div class="card card-hover" style="width: 14rem;"> 
+                          <div class="card-header">
+                             <b style="background: transparent; color: black; border: none;"><i class="fas fa-desktop"></i> {{$patrocinio->sigla}}</b>
+                          </div>
+                          <a href="{{$patrocinio->link_site}}">
+                               <img class="card-img-top" src="{{asset('storage/'.$patrocinio->logo)}}" alt="{{$patrocinio->nome}}" width="286" height="180">
+                           </a>
+                        <div class="card-body">                
+                           <p class="card-text"></p>        
+                           <a href="{{$patrocinio->link_site}}" type="button" class="btn btn-success">Visitar</a>
+                        </div>
+                     </div>
+                   </div>
+                    @break
+                    @elseif ($loop->last)
+                    {{-- cessa a construção de cards --}}
+                    @endif
+                    @endforeach                    
+                    @else
+                    <div class="container-fluid">
+                    <div class="row">
+                    <div class="p-2 mt-2">
+                       <div class="card" style="width: 18rem;">
+                           <div class="row no-gutters">
+                              <div class="col-md-4">
+                                  <img src="{{asset('logo.jpg')}}" class="card-img" alt="sistema">
+                              </div>
+                       <div class="col-md-8">
+                            <div class="card-body">
+                                 <h5 class="card-title"><b>Seja bem vindo!</b></h5>
+                                 <p class="card-text">Anuncie aqui!</p>
+                                 <p class="card-text"><small class="text-muted">Conheça o nosso trabalho!</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    @endif
+                    </div>
+                    </div>
+                <!-- fim patrocínios -->
+
                 <!--chamada dos comentários--> 
                 @auth   
                 <div class="col-14">             
