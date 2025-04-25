@@ -1,6 +1,19 @@
 @extends('layouts.page')
 @section('content') 
 
+<style>
+  .card {
+    transition: transform 0.2s ease;
+    box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
+    border-radius: 0;
+    border: 0;
+    margin-bottom: 1.5em;
+  }
+  .card:hover {
+    transform: scale(1.1);
+  }
+</style>
+
   <!-- Cabeçalho-->
  <header class="masthead" style="background-image: url('/storage/{{$artigo->imagem}}')">
             <div class="container position-relative px-4 px-lg-5">
