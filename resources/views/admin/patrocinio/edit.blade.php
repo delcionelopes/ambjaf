@@ -21,7 +21,7 @@
                             <img src="{{asset('storage/'.$patrocinio->logo')}}" class="imgico rounded-circle" width="100" >
                         @else
                             <img src="{{asset('storage/user.png')}}" class="imgico rounded-circle" width="100" >
-                        @end    
+                        @endif    
                         </div>
                        <label for="">Logo</label>                        
                        <span class="btn btn-none fileinput-button"><i class="fas fa-plus"></i>                          

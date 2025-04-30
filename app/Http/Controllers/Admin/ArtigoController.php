@@ -361,7 +361,7 @@ class ArtigoController extends Controller
         ]);
     }  
 
-    public function deleteArquivo($id){        
+  /*  public function deleteArquivo($id){        
         $arquivo = Arquivo::find($id);
         $artigoid = $arquivo->artigos_id;  
         //deleção o arquivo na pasta /storage/arquivos/   
@@ -374,7 +374,7 @@ class ArtigoController extends Controller
         $artigo = $this->artigo->find($artigoid);
         $totalarqs = $artigo->arquivos->count();
         return true;        
-    }
+    } */
 
     public function maxId(){
         $artigo = $this->artigo->orderByDesc('id')->first();
