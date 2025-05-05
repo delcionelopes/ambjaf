@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Comentario extends Model
 {
     use HasFactory;
-    protected $table = "cometarios";
+    protected $table = "comentarios";
     protected $primaryKey = "id";
     protected $fillable = [
         'id',

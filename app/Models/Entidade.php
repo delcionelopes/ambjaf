@@ -16,6 +16,7 @@ class Entidade extends Model
         'sigla',
         'fundacao',
         'cnpj',
+        'email',
         'endereco',
         'numero',
         'bairro',

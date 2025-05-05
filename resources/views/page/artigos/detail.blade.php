@@ -81,7 +81,7 @@
                      @if(($patrocinio->id)==($patroc->id))
                     <div class="p-2 mt-2">       
                     <div class="card card-hover" style="width: 14rem;">
-                          <a href="{{$patrocinio->link_site}}">
+                          <a href="{{asset($patrocinio->link_site)}}">
                                <img class="card-img-top" src="{{asset('storage/'.$patrocinio->logo)}}" alt="{{$patrocinio->nome}}" width="286" height="180">
                            </a>
                      </div>
