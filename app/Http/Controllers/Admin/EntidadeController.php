@@ -62,7 +62,7 @@ class EntidadeController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'nome'     => ['required','max:30'],
+            'nome'     => ['required','max:100'],
             'sigla'    => ['required','max:15'],
             'fundacao' => ['required','date'],
         ]);
@@ -156,7 +156,7 @@ class EntidadeController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(),[
-            'nome'     => ['required','max:30'],
+            'nome'     => ['required','max:100'],
             'sigla'    => ['required','max:15'],
             'fundacao' => ['required','date'],
         ]);
@@ -233,17 +233,20 @@ class EntidadeController extends Controller
     {
         $entidade = $this->entidade->find($id);
         $patrocinios = $entidade->patrocinios;
-        if($patrocinios->count){
+        if($patrocinios->count()>0){
             return response()->json([
                 'status' => 400,
                 'errors' => 'Este registro não pode ser excluído. Pois, há outros que dependem dele!',
             ]);
         }else{
          ///deleção do arquivo de imagem no diretório
-              $arquivoPath = public_path('/storage/'.$entidade->logo);
+         if($entidade->logo){
+              $arquivoPath = public_path('/storage/'.$entidade->logo);              
               if(file_exists($arquivoPath)){
                   unlink($arquivoPath);            
           }
+        }
+
             $entidade->delete();
             return response()->json([
                 'status' => 200,

@@ -17,11 +17,11 @@
                     <!--arquivo de imagem-->
                     <div class="form-group mb-3">                                                
                        <div class="image">           
-                        @if($patrocinio->logo)                 
-                            <img src="{{asset('storage/'.$entidade->logo')}}" class="imgico rounded-circle" width="100" >
+                        @if($entidade->logo)                 
+                            <img src="{{asset('storage/'.$entidade->logo)}}" class="imgico rounded-circle" width="100" >
                         @else
                             <img src="{{asset('storage/user.png')}}" class="imgico rounded-circle" width="100" >
-                        @end    
+                        @endif    
                         </div>
                        <label for="">Logo</label>                        
                        <span class="btn btn-none fileinput-button"><i class="fas fa-plus"></i>                          
@@ -54,6 +54,20 @@
                                 <input type="text" required class="cnpj form-control" name="cnpj" id="cnpj" placeholder="CNPJ da entidade" value="{{$entidade->cnpj}}">
                             </div>
                         </div>                        
+                    </div>
+                    <div class="row">
+                         <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="fundacao">Fundação</label>
+                                <input type="text" required class="form-control" name="fundacao" id="fundacao" placeholder="DD/MM/AAAA" data-mask="00/00/0000" data-mask-reverse="true" value="{{date('d/m/Y', strtotime($entidade->fundacao))}}">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                              <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="text" required class="form-control" name="email" id="email" placeholder="e-mail da entidade" value="{{$entidade->email}}">
+                            </div>
+                        </div>     
                     </div>                    
                 </fieldset>
                 <fieldset>
@@ -131,7 +145,7 @@
                                 <legend>Patrocínios</legend>
                                 <div class="form-check">                                                                        
                                     @foreach ($patrocinios as $patrocinio)
-                                    @if($entidade->patrocinios->count())
+                                    @if($entidade->patrocinios()->count())
                                         @foreach($entidade->patrocinios as $patrocinioentidade)
                                         @if(($patrocinio->id) == ($patrocinioentidade->id))
                                         <label class="form-check-label" for="check{{$patrocinio->id}}">
@@ -200,13 +214,14 @@ $(document).ready(function(){
             data.append('nome',$('#nome').val());
             data.append('sigla',$('#sigla').val());
             data.append('email',$('#email').val());
+            data.append('fundacao', formatDate($('#fundacao').val()));
             data.append('imagem',$('#upimagem')[0].files[0]);
             data.append('cnpj',$('#cnpj').val());
             data.append('endereco',$('#endereco').val());
             data.append('numero',$('#numero').val());
             data.append('bairro',$('#bairro').val());
             data.append('cidade',$('#cidade').val());
-            data.append('cep',$('#add_cep').val());
+            data.append('cep',$('#edit_cep').val());
             data.append('estado',$('#estado').val());
             data.append('patrocinios',JSON.stringify(patrocinios)); //array
             data.append('_enctype','multipart/form-data');
@@ -358,6 +373,16 @@ $(document).ready(function(){
 
      });
     //fim busca cep
+
+    //formatação str para date
+       function formatDate(data, formato) {
+        if (formato == 'pt-br') {
+            return (data.substr(0, 10).split('-').reverse().join('/'));
+        } else {
+            return (data.substr(0, 10).split('/').reverse().join('-'));
+        }
+        }
+    //fim formatDate
 
 });
 

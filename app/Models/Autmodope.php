@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Autmodope extends Model
 {
     use HasFactory;
-    protected $table = 'autorizacao';
-    protected $primaryKey = 'id';
+    protected $table = "autorizacao";
+    protected $primaryKey = "id";
     protected $fillable = [
         'id',
         'modope_operacao_id',

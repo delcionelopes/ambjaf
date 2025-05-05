@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Arquivo extends Model
 {
     use HasFactory;
-    protected $table = 'arquivos';
-    protected $primaryKey = 'id';
+    protected $table = "arquivos";
+    protected $primaryKey = "id";
     protected $fillable = [
         'id',
         'artigos_id',

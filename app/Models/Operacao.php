@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Operacao extends Model
 {
     use HasFactory;
-    protected $table = 'operacao';
-    protected $primaryKey = 'id';
+    protected $table = "operacao";
+    protected $primaryKey = "id";
     protected $fillable = [
         'id',
         'nome',

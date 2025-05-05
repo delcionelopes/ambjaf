@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Perfil extends Model
 {
     use HasFactory;
-    protected $table = 'perfil';
-    protected $primaryKey = 'id';
+    protected $table = "perfil";
+    protected $primaryKey = "id";
     protected $fillable = [
         'id',
         'nome',

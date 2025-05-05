@@ -13,8 +13,8 @@ class Artigo extends Model
 {
     use HasFactory;
     use Sluggable;
-    protected $table = 'artigos';
-    protected $primaryKey = 'id';
+    protected $table = "artigos";
+    protected $primaryKey = "id";
     protected $fillable = [
         'id',
         'titulo',

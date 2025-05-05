@@ -4,13 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Entidade extends Model
 {
     use HasFactory;
-    protected $table = 'entidade';
-    protected $primaryKey = 'id';
+    protected $table = "entidade";
+    protected $primaryKey = "id";
     protected $fillable = [
         'id',
         'nome',
@@ -27,7 +26,7 @@ class Entidade extends Model
         'updated_at',
     ];
 
-    protected function patrocinios():BelongsToMany{
+    public function patrocinios(){
         return $this->belongsToMany(Patrocinio::class,'entidade_has_patrocinio','entidade_id','patrocinio_id');
     }
 }

@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col-md-4">
                               <div class="form-group">
-                                <label for="descricao">Sigla</label>
+                                <label for="sigla">Sigla</label>
                                 <input type="text" required class="form-control" name="sigla" id="sigla" placeholder="Sigla da entidade">
                             </div>
                         </div>
@@ -49,6 +49,20 @@
                                 <input type="text" required class="form-control" name="cnpj" id="cnpj" placeholder="CNPJ da entidade">
                             </div>
                         </div>                        
+                    </div>
+                    <div class="row">
+                         <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="fundacao">Fundação</label>
+                                <input type="text" required class="form-control" name="fundacao" id="fundacao" placeholder="DD/MM/AAAA" data-mask="00/00/0000" data-mask-reverse="true">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                              <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="text" required class="form-control" name="email" id="email" placeholder="e-mail da entidade">
+                            </div>
+                        </div>     
                     </div>
                 </fieldset>
                 <fieldset>
@@ -82,7 +96,7 @@
                             <img id="addimgpesquisacep" src="{{asset('storage/ajax-loader.gif')}}" style="display: none;" class="rounded-circle" width="20"><img id="addimgcorreios" src="{{asset('storage/c1.png')}}" class="rounded-circle" width="20">
                             <small id="addpesquisacepresposta"></small>              
                             </label>          
-                            <input type="text" id="add_cep" class="cep form-control" placeholder="00000000" data-mask="00000000" data-mask-reverse="true">                        
+                            <input type="text" id="add_cep" class="cep form-control" placeholder="00000000" data-mask="00000000" data-mask-reverse="true">
                         </div>
                         </div>
                         <div class="col-md-2">
@@ -178,6 +192,7 @@ $(document).ready(function(){
             data.append('nome',$('#nome').val());
             data.append('sigla',$('#sigla').val());
             data.append('email',$('#email').val());
+            data.append('fundacao',formatDate($('#fundacao').val()));
             data.append('imagem',$('#upimagem')[0].files[0]);
             data.append('cnpj',$('#cnpj').val());
             data.append('endereco',$('#endereco').val());
@@ -336,6 +351,16 @@ $(document).ready(function(){
 
      });
     //fim busca cep
+
+    //formatação str para date
+       function formatDate(data, formato) {
+        if (formato == 'pt-br') {
+            return (data.substr(0, 10).split('-').reverse().join('/'));
+        } else {
+            return (data.substr(0, 10).split('/').reverse().join('-'));
+        }
+        }
+    //fim formatDate
 
 });
 
