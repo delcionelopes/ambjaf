@@ -26,8 +26,8 @@
                                 Postado por
                                 <a href="#!">{{$artigo->users->name}}</a>
                                 <img src="{{asset('/storage/'.$artigo->users->avatar)}}" class="rounded-circle" width="50">
-                                <span class="caret"></span><br>                               
-                                {{ucwords(strftime('%A, %d de %B de %Y', strtotime($artigo->created_at)))}}
+                                <span class="caret"></span><br>
+                                 {{ucfirst(utf8_encode(strftime('%A, %d de %B de %Y', strtotime($artigo->created_at))))}}
                             </span>
                         </div>
                     </div>
@@ -80,9 +80,9 @@
                      @foreach($artigo->patrocinios as $patrocinio)
                      @if(($patrocinio->id)==($patroc->id))
                     <div class="p-2 mt-2">       
-                    <div class="card card-hover" style="width: 14rem;">
-                          <a href="{{$patrocinio->link_site}}">
-                               <img class="card-img-top" src="{{asset('storage/'.$patrocinio->logo)}}" alt="{{$patrocinio->nome}}" width="286" height="180">
+                    <div class="card card-hover" style="width: 5rem; height:5rem;">
+                          <a href="{{$patrocinio->link_site}}" target="_blank">
+                               <img class="card-img-top" src="{{asset('storage/'.$patrocinio->logo)}}" alt="{{$patrocinio->nome}}" width="100" height="100">
                            </a>
                      </div>
                    </div>
@@ -143,7 +143,7 @@
                         <img id="avatar" src="{{asset('storage/' . $comentario->user->avatar)}}" alt="Foto de {{$comentario->user->name}}" class="rounded-circle" width="40">
                         @endif                                                                                                               
                         <small><strong>{{$comentario->user->name}}</strong></small>
-                        <small class="text-muted">enviado em {{date('d/m/Y H:i:s',strtotime($comentario->created_at))}}</small>                                                
+                        <small class="text-muted">enviado {{ucfirst(utf8_encode(strftime('%A, %d de %B de %Y', strtotime($comentario->created_at))))}}</small>                                                
                         @auth
                         @if((auth()->user()->moderador)&&(auth()->user()->inativo!=1))
                         <button data-id="{{$comentario->id}}" class="delete_comentario_btn fas fa-trash" style="background:transparent;border:none;"></button>

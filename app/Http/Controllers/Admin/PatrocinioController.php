@@ -56,7 +56,7 @@ class PatrocinioController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'nome' => ['required','max:30'],
+            'nome' => ['required','max:100'],
             'sigla' => ['required','max:15'],
         ]);
         if($validator->fails()){
@@ -101,12 +101,10 @@ class PatrocinioController extends Controller
             $data['created_at'] = now();
             $data['updated_at'] = null;
 
-            $patrocinio = $this->patrocinio->create($data);
+            $this->patrocinio->create($data);
 
             return response()->json([
                 'status' => 200,
-                'patrocinio' => $patrocinio,
-                'message' => 'Registro criado com sucesso!',                
             ]);
         }
     }
@@ -148,7 +146,7 @@ class PatrocinioController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(),[
-            'nome' => ['required','max:30'],
+            'nome' => ['required','max:100'],
             'sigla' => ['required','max:15'],
         ]);
         if($validator->fails()){
@@ -179,8 +177,7 @@ class PatrocinioController extends Controller
                         if(file_exists($tempPath)){
                             unlink($tempPath);
                         }
-                }         
-            
+                }
             $data['nome'] = $request->input('nome');
             $data['sigla'] = $request->input('sigla');
             if($filePath){
@@ -198,17 +195,12 @@ class PatrocinioController extends Controller
             $data['cidade'] = $request->input('cidade');
             $data['estado'] = $request->input('estado');
             $data['cep'] = $request->input('cep');
-            $data['created_at'] = now();
-            $data['updated_at'] = null;
+            $data['updated_at'] = now();
 
-            $patrocinio = $this->patrocinio->update($data);
-
-            $p = Patrocinio::find($id);
+            $patrocinio->update($data);
 
             return response()->json([
                 'status' => 200,
-                'patrocinio' => $p,
-                'message' => 'Registro alterado com sucesso!',                
             ]);
         }else{
             return response()->json([
@@ -291,6 +283,6 @@ class PatrocinioController extends Controller
         }else{
             $codigo = 0;
         }
-        return $codigo++;
+        return $codigo+1;
     }
 }

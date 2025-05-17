@@ -32,7 +32,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="nome">Nome</label>
-                                <input type="text" required class="form-control" name="nome" id="nome" placeholder="Nome do patrocinador">
+                                <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome do patrocinador">
                             </div>
                         </div>
                     </div>
@@ -40,19 +40,19 @@
                         <div class="col-md-4">
                               <div class="form-group">
                                 <label for="sigla">Sigla</label>
-                                <input type="text" required class="form-control" name="sigla" id="sigla" placeholder="Sigla do patrocinador">
+                                <input type="text" class="form-control" name="sigla" id="sigla" placeholder="Sigla do patrocinador">
                             </div>
                         </div>
                         <div class="col-md-4">
                               <div class="form-group">
                                 <label for="cnpj">CNPJ</label>
-                                <input type="text" required class="form-control" name="cnpj" id="cnpj" placeholder="CNPJ do patrocinador">
+                                <input type="text" class="form-control" name="cnpj" id="cnpj" placeholder="CNPJ do patrocinador">
                             </div>
                         </div>
                         <div class="col-md-4">
                               <div class="form-group">
                                 <label for="cpf">CPF</label>
-                                <input type="text" required class="form-control" name="cpf" id="cpf" placeholder="CPF do patrocinador">
+                                <input type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF do patrocinador">
                             </div>
                         </div>
                     </div>                    
@@ -60,7 +60,7 @@
                         <div class="col-md-4">
                               <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" required class="form-control" name="email" id="email" placeholder="email do patrocinador">
+                                <input type="text" class="form-control" name="email" id="email" placeholder="email do patrocinador">
                             </div>
                         </div>                        
                     </div>                    
@@ -68,7 +68,7 @@
                         <div class="col-md-4">
                               <div class="form-group">
                                 <label for="link_site">Link do Site</label>
-                                <input type="text" required class="form-control" name="link_site" id="link_site" placeholder="https://..site">
+                                <input type="text" class="form-control" name="link_site" id="link_site" placeholder="https://..site">
                             </div>
                         </div>                        
                     </div>
@@ -76,7 +76,7 @@
                         <div class="col-md-4">
                               <div class="form-group">
                                 <label for="contato">Contato</label>
-                                <input type="text" required class="form-control" name="contato" id="contato" placeholder="Contato do patrocinador">
+                                <input type="text" class="form-control" name="contato" id="contato" placeholder="Contato do patrocinador">
                             </div>
                         </div>                        
                     </div>
@@ -329,7 +329,8 @@ $(document).ready(function(){
                                 $(".endereco").val(response.localizacao.logradouro);                                
                                 $(".bairro").val(response.localizacao.bairro);
                                 $(".cidade").val(response.localizacao.localidade);
-                                $(".estado").val(response.localizacao.uf);                                
+                                $(".estado").val(response.localizacao.uf);
+                                $(".cep").val(cep);
                                 loading.hide();
                                 var link = "{{asset('')}}storage/c1.png";
                                 $('#addimgcorreios').replaceWith('<img id="addimgcorreios" src="'+link+'" class="rounded-circle" width="20">');

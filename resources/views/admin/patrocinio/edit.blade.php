@@ -18,7 +18,7 @@
                     <div class="form-group mb-3">                                                
                        <div class="image">           
                         @if($patrocinio->logo)                 
-                            <img src="{{asset('storage/'.$patrocinio->logo')}}" class="imgico rounded-circle" width="100" >
+                            <img src="{{asset('storage/'.$patrocinio->logo)}}" class="imgico rounded-circle" width="100" >
                         @else
                             <img src="{{asset('storage/user.png')}}" class="imgico rounded-circle" width="100" >
                         @endif    
@@ -37,7 +37,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="nome">Nome</label>
-                                <input type="text" required class="nome form-control" name="nome" id="nome" placeholder="Nome do patrocinador" value="{{$patrocinio->nome}}">
+                                <input type="text" class="nome form-control" name="nome" id="nome" placeholder="Nome do patrocinador" value="{{$patrocinio->nome}}">
                             </div>
                         </div>
                     </div>
@@ -45,19 +45,19 @@
                         <div class="col-md-4">
                               <div class="form-group">
                                 <label for="sigla">Sigla</label>
-                                <input type="text" required class="sigla form-control" name="sigla" id="sigla" placeholder="Sigla do patrocinador" value="{{$patrocinio->sigla}}">
+                                <input type="text" class="sigla form-control" name="sigla" id="sigla" placeholder="Sigla do patrocinador" value="{{$patrocinio->sigla}}">
                             </div>
                         </div>
                         <div class="col-md-4">
                               <div class="form-group">
                                 <label for="cnpj">CNPJ</label>
-                                <input type="text" required class="cnpj form-control" name="cnpj" id="cnpj" placeholder="CNPJ do patrocinador" value="{{$patrocinio->cnpj}}">
+                                <input type="text" class="cnpj form-control" name="cnpj" id="cnpj" placeholder="CNPJ do patrocinador" value="{{$patrocinio->cnpj}}">
                             </div>
                         </div>
                         <div class="col-md-4">
                               <div class="form-group">
                                 <label for="cpf">CPF</label>
-                                <input type="text" required class="cpf form-control" name="cpf" id="cpf" placeholder="CPF do patrocinador" value="{{$patrocinio->cpf}}">
+                                <input type="text" class="cpf form-control" name="cpf" id="cpf" placeholder="CPF do patrocinador" value="{{$patrocinio->cpf}}">
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                         <div class="col-md-4">
                               <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" required class="email form-control" name="email" id="email" placeholder="email do patrocinador" value="{{$patrocinio->email}}">
+                                <input type="text" class="email form-control" name="email" id="email" placeholder="email do patrocinador" value="{{$patrocinio->email}}">
                             </div>
                         </div>                        
                     </div>                    
@@ -87,7 +87,7 @@
                         <div class="col-md-4">
                               <div class="form-group">
                                 <label for="link_site">Link do Site</label>
-                                <input type="text" required class="link_site form-control" name="link_site" id="link_site" placeholder="https://..site" value="{{$patrocinio->link_site}}">
+                                <input type="text" class="link_site form-control" name="link_site" id="link_site" placeholder="https://..site" value="{{$patrocinio->link_site}}">
                             </div>
                         </div>                        
                     </div>
@@ -95,7 +95,7 @@
                         <div class="col-md-4">
                               <div class="form-group">
                                 <label for="contato">Contato</label>
-                                <input type="text" required class="contato form-control" name="contato" id="contato" placeholder="Contato do patrocinador" value="{{$patrocinio->contato}}">
+                                <input type="text" class="contato form-control" name="contato" id="contato" placeholder="Contato do patrocinador" value="{{$patrocinio->contato}}">
                             </div>
                         </div>                        
                     </div>
@@ -218,7 +218,7 @@ $(document).ready(function(){
             data.append('numero',$('#numero').val());
             data.append('bairro',$('#bairro').val());
             data.append('cidade',$('#cidade').val());
-            data.append('cep',$('#add_cep').val());
+            data.append('cep',$('#edit_cep').val());
             data.append('estado',$('#estado').val());
             data.append('_enctype','multipart/form-data');
             data.append('_token',CSRF_TOKEN);
@@ -351,7 +351,8 @@ $(document).ready(function(){
                                 $(".endereco").val(response.localizacao.logradouro);                                
                                 $(".bairro").val(response.localizacao.bairro);
                                 $(".cidade").val(response.localizacao.localidade);
-                                $(".estado").val(response.localizacao.uf);                                
+                                $(".estado").val(response.localizacao.uf);
+                                $(".cep").val(cep);
                                 loading.hide();
                                 var link = "{{asset('')}}storage/c1.png";
                                 $('#editimgcorreios').replaceWith('<img id="editimgcorreios" src="'+link+'" class="rounded-circle" width="20">');

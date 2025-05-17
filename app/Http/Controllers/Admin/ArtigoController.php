@@ -70,7 +70,7 @@ class ArtigoController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'titulo'    => ['required','max:100'],
-            'descricao' => ['required','max:180'],
+            'descricao' => ['required','max:200'],
             'conteudo'  => ['required'],            
         ]);
         if($validator->fails()){
@@ -94,7 +94,6 @@ class ArtigoController extends Controller
                     }
            
             }
-
             $user = auth()->user();
             $data['id'] = $this->maxId();
             $data['titulo'] = $request->input('titulo');
@@ -103,7 +102,7 @@ class ArtigoController extends Controller
             if($filePath){
                 $data['imagem'] = $filePath;
             }
-            $data['user_id'] = $user->id;
+            $data['usuario_id'] = $user->id;
             $data['created_at'] = now();
             $data['updated_at'] = null;
             $artigo = $this->artigo->create($data);
@@ -161,7 +160,7 @@ class ArtigoController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'titulo'    => ['required','max:100'],
-            'descricao' => ['required','max:180'],
+            'descricao' => ['required','max:200'],
             'conteudo'  => ['required'],            
         ]);
 
@@ -201,10 +200,10 @@ class ArtigoController extends Controller
                 if($filePath){
                     $data['imagem'] = $filePath;
                 }
-                $data['user_id'] = $user->id;
+                $data['usuario_id'] = $user->id;
                 $data['updated_at'] = now();
 
-                $artigo->update($data); //atualização retorna um valor booleano
+                $artigo->update($data);
                 $a = Artigo::find($id);
                 $a->temas()->sync(json_decode($request->input('temas')));
                 $a->patrocinios()->sync(json_decode($request->input('patrocinios')));
@@ -383,7 +382,7 @@ class ArtigoController extends Controller
         }else{
             $codigo = 0;
         }
-        return $codigo++;
+        return $codigo+1;
     }
 
 

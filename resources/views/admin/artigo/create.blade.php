@@ -72,10 +72,10 @@
                      <div class="card-body"> 
                             <fieldset>
                                 <legend>Patrocínios</legend>
-                                <div class="form-check">                                                                        
+                                <div class="form-check">
                                     @foreach ($patrocinios as $patrocinio)
-                                    <label class="form-check-label" for="check{{$patrocinio->id}}">
-                                        <input type="checkbox" id="check{{$patrocinio->id}}" name="patrocinios[]" value="{{$patrocinio->id}}" class="form-check-input"> {{$patrocinio->sigla}}
+                                    <label class="form-check-label" for="checkp{{$patrocinio->id}}">
+                                        <input type="checkbox" id="checkp{{$patrocinio->id}}" name="patrocinios[]" value="{{$patrocinio->id}}" class="form-check-input"> {{$patrocinio->sigla}}
                                     </label><br>
                                     @endforeach                                    
                                 </div>

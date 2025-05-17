@@ -58,10 +58,10 @@
                         </a>
                         <p class="post-meta">
                             Postado por
-                            @if($artigo->user)
-                            <a href="#!">{{$artigo->user->name}}</a>                            
+                            @if($artigo->users)
+                            <a href="{{asset($artigo->users->link_facebook)}}" target="_blank">{{$artigo->users->name}}</a>                            
                             @endif
-                            {{ucwords(strftime('%A, %d de %B de %Y', strtotime($artigo->created_at)))}}
+                            {{ucfirst(utf8_encode(strftime('%A, %d de %B de %Y', strtotime($artigo->created_at))))}}
                             <a href="{{route('page.detail',['slug' => $artigo->slug])}}">
                                 <i class="fas fa-comment-alt"></i> {{$artigo->comentarios()->count()}}
                             </a>                             
@@ -83,9 +83,9 @@
                      @foreach($entidade->patrocinios as $patrocinio)
                      @if(($patrocinio->id)==($patroc->id))
                     <div class="p-2 mt-2">       
-                    <div class="card card-hover" style="width: 14rem;">                          
-                          <a href="{{asset($patrocinio->link_site)}}">
-                               <img class="card-img-top" src="{{asset('storage/'.$patrocinio->logo)}}" alt="{{$patrocinio->nome}}" width="286" height="180">
+                    <div class="card card-hover" style="width: 5rem; height: 5rem;">                          
+                          <a href="{{asset($patrocinio->link_site)}}" target="_blank">
+                               <img class="card-img-top" src="{{asset('storage/'.$patrocinio->logo)}}" alt="{{$patrocinio->nome}}" width="100" height="100">
                            </a>
                      </div>
                    </div>

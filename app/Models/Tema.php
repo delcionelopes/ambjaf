@@ -23,13 +23,13 @@ class Tema extends Model
     ];
 
     public function artigos():BelongsToMany{
-    return $this->belongsToMany(Artigo::class, 'temas_artigos', 'temas_id','artigos_id');
+    return $this->belongsToMany(Artigo::class, 'temas_postagens', 'temas_id','artigos_id');
     }
 
     public function Sluggable():array{
         return [
                 'slug' => [
-                    'source' => 'titulo',
+                    'source' => 'id',
                 ],
         ];
     }

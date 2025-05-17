@@ -355,7 +355,8 @@ $(document).ready(function(){
                                 $(".endereco").val(response.localizacao.logradouro);                                
                                 $(".bairro").val(response.localizacao.bairro);
                                 $(".cidade").val(response.localizacao.localidade);
-                                $(".estado").val(response.localizacao.uf);                                
+                                $(".estado").val(response.localizacao.uf);
+                                $(".cep").val(cep);
                                 loading.hide();
                                 var link = "{{asset('')}}storage/c1.png";
                                 $('#editimgcorreios').replaceWith('<img id="editimgcorreios" src="'+link+'" class="rounded-circle" width="20">');

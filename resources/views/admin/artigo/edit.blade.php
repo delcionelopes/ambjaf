@@ -114,19 +114,19 @@
                                     @if($artigo->patrocinios->count())
                                         @foreach($artigo->patrocinios as $patrocinioartigo)
                                         @if(($patrocinio->id) == ($patrocinioartigo->id))
-                                        <label class="form-check-label" for="check{{$patrocinio->id}}">
-                                            <input type="checkbox" id="check{{$patrocinio->id}}" name="patrocinios[]" value="{{$patrocinio->id}}" class="form-check-input" checked> {{$patrocinio->sigla}}
+                                        <label class="form-check-label" for="checkp{{$patrocinio->id}}">
+                                            <input type="checkbox" id="checkp{{$patrocinio->id}}" name="patrocinios[]" value="{{$patrocinio->id}}" class="form-check-input" checked> {{$patrocinio->sigla}}
                                         </label><br>
                                         @break
                                         @elseif ($loop->last)
-                                        <label class="form-check-label" for="check{{$patrocinio->id}}">
-                                            <input type="checkbox" id="check{{$patrocinio->id}}" name="patrocinios[]" value="{{$patrocinio->id}}" class="form-check-input"> {{$patrocinio->sigla}}
+                                        <label class="form-check-label" for="checkp{{$patrocinio->id}}">
+                                            <input type="checkbox" id="checkp{{$patrocinio->id}}" name="patrocinios[]" value="{{$patrocinio->id}}" class="form-check-input"> {{$patrocinio->sigla}}
                                         </label><br>
                                         @endif
                                         @endforeach
                                     @else
-                                    <label class="form-check-label" for="check{{$patrocinio->id}}">
-                                        <input type="checkbox" id="check{{$patrocinio->id}}" name="patrocinios[]" value="{{$patrocinio->id}}" class="form-check-input"> {{$patrocinio->sigla}}
+                                    <label class="form-check-label" for="checkp{{$patrocinio->id}}">
+                                        <input type="checkbox" id="checkp{{$patrocinio->id}}" name="patrocinios[]" value="{{$patrocinio->id}}" class="form-check-input"> {{$patrocinio->sigla}}
                                     </label><br>
                                     @endif
                                     @endforeach

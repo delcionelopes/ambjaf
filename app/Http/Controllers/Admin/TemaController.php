@@ -180,7 +180,7 @@ class TemaController extends Controller
         }else{
             $codigo = 0;
         }
-        return $codigo++;
+        return $codigo+1;
     }
 
 }
