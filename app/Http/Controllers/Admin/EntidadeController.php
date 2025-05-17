@@ -105,8 +105,6 @@ class EntidadeController extends Controller
             $data['created_at'] = now();
             $data['updated_at'] = null;
 
-            dd($data);
-
             $entidade = $this->entidade->create($data);
             $e = $entidade;
 
