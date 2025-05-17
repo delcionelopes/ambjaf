@@ -180,6 +180,7 @@ $(document).ready(function(){
         var CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute('content');   
         var loading = $('#imgadd');
             loading.show();
+        var files = $('#upimagem')[0].files;
         var color = $(this).data("color");
         
         var patrocinios = new Array();
@@ -222,6 +223,7 @@ $(document).ready(function(){
                         $.each(response.errors,function(key,err_values){
                             $('#saveform_errList').append('<li>'+err_values+'</li>');
                         });
+                        loading.hide();
                 } else{
                     $('#saveform_errList').replaceWith('<ul id="saveform_errList"></ul>');  
                     loading.hide();

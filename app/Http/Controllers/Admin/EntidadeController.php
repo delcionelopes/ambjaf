@@ -95,6 +95,7 @@ class EntidadeController extends Controller
             }
             $data['fundacao'] = $request->input('fundacao');
             $data['cnpj'] = $request->input('cnpj');
+            $data['email'] = $request->input('email');
             $data['endereco'] = $request->input('endereco');
             $data['numero'] = $request->input('numero');
             $data['bairro'] = $request->input('bairro');
@@ -103,6 +104,8 @@ class EntidadeController extends Controller
             $data['estado'] = $request->input('estado');
             $data['created_at'] = now();
             $data['updated_at'] = null;
+
+            dd($data);
 
             $entidade = $this->entidade->create($data);
             $e = $entidade;
@@ -196,6 +199,7 @@ class EntidadeController extends Controller
                 if($filePath){
                     $data['logo'] = $filePath;
                 }
+                $data['email'] = $request->input('email');
                 $data['endereco'] = $request->input('endereco');
                 $data['numero'] = $request->input('numero');
                 $data['bairro'] = $request->input('bairro');
