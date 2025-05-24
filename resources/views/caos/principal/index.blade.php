@@ -40,21 +40,26 @@
 
 @foreach ($modulos as $mod)   
   @foreach($autorizacao as $aut)
-  @if(($aut->modope_modulo_id) == ($mod->id))
-    <div class="p-2 mt-2">
-    <div class="card card-hover" style="width: 14rem;">
-      <div class="card-header">
-        <b style="background: transparent; color: black; border: none;"><i class="fas fa-desktop"></i> {{$mod->nome}}</b>
+  @if($aut->modope_modulo_id == $mod->id)    
+  <div class="p-2 mt-2">   
+    <div class="card card-hover mb-3" style="max-width: 400px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <a href="{{route('caos.principal.operacoes',['id' => $mod->id,'color'=>$mod->color])}}">
+        <img src="{{asset('storage/'.$mod->ico)}}" class="card-img" alt="Capa do módulo">
+        </a>
       </div>
-      <a href="{{route('caos.principal.operacoes',['id' => $mod->id,'color'=>$mod->color])}}">
-      <img class="card-img-top" src="{{asset('storage/'.$mod->ico)}}" alt="Imagem de capa do módulo" width="286" height="180">
-      </a>
-      <div class="card-body">                
-        <p class="card-text">{{$mod->descricao}}</p>        
-        <a href="{{route('caos.principal.operacoes',['id' => $mod->id,'color'=>$mod->color])}}" type="button" class="btn btn-{{$mod->color}}">Opções</a>
+      <div class="col-md-8">
+        <div class="card-body text-right">
+          <h5 class="card-title">{{$mod->nome}}</h5>
+          <p class="card-text">{{$mod->descricao}}</p>
+          <p class="card-text"><small class="text-muted">Criado em {{ucfirst(utf8_encode(strftime('%A, %d de %B de %Y', strtotime($mod->created_at))))}}</small></p>
+          <a href="{{route('caos.principal.operacoes',['id' => $mod->id,'color'=>$mod->color])}}" class="btn btn-{{$mod->color}}">Executar</a>
+        </div>
       </div>
     </div>
   </div>
+    </div>
   @break
   @elseif ($loop->last)
   {{-- cessa a construção de cards --}}

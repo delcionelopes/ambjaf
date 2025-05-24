@@ -40,20 +40,25 @@
 @foreach ($operacoes as $ope)   
   @foreach($autorizacao as $aut)
   @if(($aut->modope_operacao_id) == ($ope->id))
-    <div class="p-2 mt-2">
-    <div class="card card-hover" style="width: 14rem;">
-      <div class="card-header">
-        <b style="background: transparent; color: black; border: none;"><i class="fas fa-desktop"></i> {{$ope->nome}}</b>
+  <div class="p-2 mt-2">
+    <div class="card card-hover mb-3" style="max-width: 400px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <a href="" data-id="{{$ope->id}}" data-color="{{$aut->modulo->color}}" id="link" class="abrir">
+        <img src="{{asset('storage/'.$ope->ico)}}" class="card-img" alt="Capa da operação">
+        </a>
       </div>
-      <a href="" data-id="{{$ope->id}}" data-color="{{$aut->modulo->color}}" id="link" class="abrir">
-      <img class="card-img-top" src="{{asset('storage/'.$ope->ico)}}" alt="Imagem de capa do módulo" width="286" height="180">
-      </a>
-      <div class="card-body">                
-        <p class="card-text">{{$ope->descricao}}</p>        
-        <button type="button" id="abrir_btn" data-id="{{$ope->id}}" data-color="{{$color}}" class="abrir btn btn-{{$aut->modulo->color}}">Abrir</button>
+      <div class="col-md-8">
+        <div class="card-body text-right">
+          <h5 class="card-title">{{$ope->nome}}</h5>
+          <p class="card-text">{{$ope->descricao}}</p>
+          <p class="card-text"><small class="text-muted">Criado em {{ucfirst(utf8_encode(strftime('%A, %d de %B de %Y', strtotime($ope->created_at))))}}</small></p>
+          <button id="abrir_btn" data-id="{{$ope->id}}" data-color="{{$aut->modulo->color}}" class="abrir btn btn-{{$aut->modulo->color}}">Executar</button>
+        </div>
       </div>
     </div>
   </div>
+    </div>
   @break
   @elseif ($loop->last)
   {{-- cessa a construção de cards --}}
